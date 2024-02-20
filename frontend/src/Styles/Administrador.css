@@ -1,0 +1,57 @@
+.main-content {
+  padding: 5rem;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.cards-container .card {
+  border: 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.cards-container .card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-0.5rem);
+}
+.cards-container .card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+.cards-container .card .card-body .icono-empresa,
+.cards-container .card .card-body .icono-usuarios,
+.cards-container .card .card-body .icono-instituciones,
+.cards-container .card .card-body .icono-reportes {
+  color: #007bff !important;
+}
+.cards-container .card .card-body .card-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.cards-container .card .card-body .card-text {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.cards-container .card .card-body .btn {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+}
+
+.modal-content .modal-header,
+.modal-content .modal-body,
+.modal-content .modal-footer {
+  padding: 1.5rem;
+}
+.modal-content .modal-title {
+  font-size: 1.75rem;
+}/*# sourceMappingURL=Administrador.css.map */

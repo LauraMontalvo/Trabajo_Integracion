@@ -1,0 +1,33 @@
+.textarea-elegante {
+    width: 100%; /* Ajusta al ancho del contenedor */
+    padding: 10px; /* Espaciado interno para el texto */
+    border-radius: 5px; /* Bordes redondeados */
+    border: 1px solid #ced4da; /* Color del borde */
+    resize: vertical; /* Permite al usuario ajustar la altura del textarea */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera para dar profundidad */
+}
+
+.detalleEmpleoModal {
+    .empleo-section {
+        margin-bottom: 1rem;
+
+        .empleo-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+
+            h5 {
+                margin: 0;
+            }
+        }
+
+        .empleo-section-body {
+            padding: 0.5rem 0;
+        }
+    }
+
+    .empleo-modalidad {
+        padding: 0.5rem 0;
+    }
+}

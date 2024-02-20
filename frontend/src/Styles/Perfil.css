@@ -1,0 +1,30 @@
+.perfil-empresa .card-empresa {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.perfil-empresa .card-empresa .imagen-empresa {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.perfil-empresa .card-empresa .titulo-empresa {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+.perfil-empresa .titulo-empleos-publicados {
+  color: #0056b3;
+  margin-bottom: 20px;
+}
+.perfil-empresa .sin-empleos {
+  color: #666;
+  font-style: italic;
+}
+
+.empresa-link {
+  color: #007bff;
+  text-decoration: none;
+}
+.empresa-link:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}/*# sourceMappingURL=Perfil.css.map */

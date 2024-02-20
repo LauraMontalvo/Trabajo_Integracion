@@ -1,0 +1,35 @@
+.perfil-empresa {
+    .card-empresa {
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      .imagen-empresa {
+        height: 100%; // Ajusta según tus necesidades
+        object-fit: cover;
+      }
+      .titulo-empresa {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+      }
+    }
+  
+    .titulo-empleos-publicados {
+      color: #0056b3; // Color del título
+      margin-bottom: 20px;
+    }
+  
+    .sin-empleos {
+      color: #666;
+      font-style: italic;
+    }
+  
+    // Aquí puedes añadir más estilos personalizados...
+  }
+  .empresa-link {
+    color: #007bff; // Color azul de enlace, puedes cambiarlo según tu paleta de colores
+    text-decoration: none; // Quitar subrayado por defecto
+  
+    &:hover {
+      text-decoration: underline; // Subrayar al pasar el cursor
+      color: #0056b3; // Oscurecer el color al pasar el cursor
+    }
+  }

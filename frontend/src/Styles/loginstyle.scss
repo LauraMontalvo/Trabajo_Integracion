@@ -1,0 +1,404 @@
+
+//variables
+$colo-fondopantalla:#FDFEFE;
+$sombreado-cajagrande: 10px 1px 10px 5px rgb(18, 172, 108);
+$estilo-letra: 'Century Gothic', sans-serif;
+$tamano-letrainput: 18px;
+$tamaño-caja-InputAncho:300px;
+$tamaño-caja-InputLargo:50px;
+$tamano-letraTitulos: 35px;
+$tamaño-letraBotones:15px;
+
+$Tamañp-letraTextoError:15px;
+$Tamañp-letraTextoNormal:20px;
+$colorBotonLogin:#47dfc0;
+$ColorFondo-Caja:#FDFEFE;
+$Tamaño-botonesancho:150px;
+$Tamaño-botoneslargo:50px;
+
+$tamaño-letra-Formularios:15px;
+$color-primary:  #1287ec;
+$color-secondary: #1287ec;
+$color-danger: #ec5012;
+$color-icon: #717171;
+$color-border: #ced4da;
+$color-focus: #80bdff;
+$shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+$focus-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+$primary-color: #007bff; // o cualquier color que coincida con tu paleta
+
+.mi-formulario {
+  font-family: $estilo-letra;
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+  background-color: rgb(248, 247, 247);
+  border-radius: 10px;
+  box-shadow: $shadow;
+
+  .botones-centrados {
+    display: flex;
+    justify-content: center;
+    gap: 20px; // Espacio entre botones
+    margin-top: 20px; // Espacio entre los botones y los campos del formulario
+  
+  }
+  h2{
+    background: linear-gradient(to right, rgba(14, 224, 161, 0.671), rgb(255, 115, 0), green);
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    font-size: $tamano-letraTitulos;
+    margin-bottom: 10px; // Ajusta según sea necesario
+
+  }
+
+  
+  .tamañoImagenChavezPamba{
+    width: 150px; /* Ancho de la imagen */
+    height: 150px; /* Altura de la imagen, igual al ancho para un círculo perfecto */
+    border-radius: 50%; /* Hace que la imagen sea redonda */
+    object-fit: cover; /* Asegura que la imagen cubra completamente el espacio sin deformarse */
+    display: block; /* Asegura que la imagen sea un bloque para centrarla */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+  }
+  .form-group {
+    margin-bottom: 15px;
+    
+  }
+
+  .input-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .input-icon {
+      position: absolute;
+      left: 10px;
+      color: $color-icon;
+      
+    }
+    
+    .large-input {
+      height: 40px; /* Ajusta la altura según tus necesidades */
+    width: 260px;
+      padding: 10px 1px; /* Ajusta el espacio interior según tus necesidades */
+    }
+    .form-control {
+      padding-left: 30px;
+      border-radius: 5px;
+      border: 1px solid $color-border;
+      transition: border-color 0.3s;
+      font-size: $tamaño-letra-Formularios;
+
+      &:focus {
+        border-color: $color-focus;
+        outline: none;
+        box-shadow: $focus-shadow;
+      }
+    }
+  }
+  p{
+    font-size: $Tamañp-letraTextoError;
+    color: red;
+    margin-bottom: 5px; // Ajusta el margen inferior según sea necesario
+  }
+  .btn-primary {
+ background-color: $color-primary; 
+
+  
+  }
+
+  .btn-secondary {
+    background-color: $color-secondary;
+  }
+  .btn-danger {
+    background-color: $color-danger;
+  }
+}
+@media (max-width: 991px)  {
+  
+    // Aquí puedes personalizar los estilos específicamente para pantallas medianas
+   
+    // Otros estilos específicos para pantallas medianas...
+
+    .mi-formulario {
+      max-width: 700px; // Ejemplo: cambiar el ancho máximo
+      padding: 30px; // Ejemplo: aumentar el padding
+      font-family: $estilo-letra;
+      
+      margin: auto;
+     
+      background-color: rgb(240, 239, 224);
+      border-radius: 10px;
+      box-shadow: $shadow;
+    
+      .botones-centrados {
+        display: flex;
+        justify-content: center;
+        gap: 20px; // Espacio entre botones
+        margin-top: 20px; // Espacio entre los botones y los campos del formulario
+        
+    
+    
+    
+      
+      }
+      h2{
+        background: linear-gradient(to right, rgba(14, 224, 161, 0.671), rgb(255, 115, 0), green);
+        background-clip: text;
+        color: transparent;
+        text-align: center;
+        font-size: $tamano-letraTitulos;
+        margin-bottom: 10px; // Ajusta según sea necesario
+    
+      }
+    
+      
+      .tamañoImagenChavezPamba{
+        width: 150px; /* Ancho de la imagen */
+        height: 150px; /* Altura de la imagen, igual al ancho para un círculo perfecto */
+        border-radius: 50%; /* Hace que la imagen sea redonda */
+        object-fit: cover; /* Asegura que la imagen cubra completamente el espacio sin deformarse */
+        display: block; /* Asegura que la imagen sea un bloque para centrarla */
+        margin: 0 auto; /* Centra la imagen horizontalmente */
+      }
+      .form-group {
+        margin-bottom: 15px;
+        
+      }
+    
+      .input-icon-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    
+        .input-icon {
+          position: absolute;
+          left: 10px;
+          color: $color-icon;
+          
+        }
+        
+        
+        .large-input {
+          height: 40px; /* Ajusta la altura según tus necesidades */
+        width: 260px;
+          padding: 10px 1px; /* Ajusta el espacio interior según tus necesidades */
+        }
+        .form-control {
+          padding-left: 30px;
+          border-radius: 5px;
+          border: 1px solid $color-border;
+          transition: border-color 0.3s;
+          font-size: $tamaño-letra-Formularios;
+    
+          &:focus {
+            border-color: $color-focus;
+            outline: none;
+            box-shadow: $focus-shadow;
+          }
+        }
+      }
+      p{
+        font-size: $Tamañp-letraTextoError;
+        color: red;
+        margin-bottom: 5px; // Ajusta el margen inferior según sea necesario
+      }
+      .btn-primary {
+     background-color: $color-primary; 
+    
+      
+      }
+    
+      .btn-secondary {
+        background-color: $color-secondary;
+      }
+      .btn-danger {
+        background-color: $color-danger;
+      }
+    }
+  }
+
+//
+.input-icon-wrapper {
+  // tus estilos existentes...
+
+  .react-select-container {
+    width: 100%; // Asegúrate de que el select ocupe todo el ancho disponible
+    .react-select__control {
+      border-radius: 5px;
+      border: 1px solid $color-border;
+      font-size: $tamaño-letra-Formularios;
+    }
+    .react-select__value-container {
+      padding-left: 30px; // Espacio para el icono
+    }
+  }
+}
+  ///CONTRASEÑAS
+.password-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .field-icon, .toggle-password-icon {
+    position: absolute;
+    color: $color-icon;
+    cursor: pointer;
+  }
+
+  .field-icon {
+    left: 10px;
+  }
+
+  .toggle-password-icon {
+    right: 10px;
+    margin-right: 10px; /* Ajusta según sea necesario */
+
+  }
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+ 
+  .password-input {
+    width: 100%;
+    padding-left: 30px; // Espacio para el icono de candado
+    padding-right: 30px; // Espacio para el icono de ojo
+    border-radius: 5px;
+    border: 1px solid $color-border;
+    font-size: $tamaño-letra-Formularios;
+
+    &:focus {
+      border-color: $color-focus;
+      outline: none;
+      box-shadow: $focus-shadow;
+    }
+  }
+
+ 
+  
+  .campo-formulario {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+    .icono-formulario {
+      position: absolute;
+      left: 10px;
+      color: #717171;
+    }
+
+    .input-con-icono {
+      width: 100%;
+      padding-left: 30px; // Asegura espacio para el ícono
+      // Añade aquí más estilos para el input si lo deseas
+    }
+  }
+
+  
+}
+//Institucion 
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+
+  .img-fluid {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: block;
+    border: 3px solid $primary-color;
+  }
+ 
+  .camera-icon {
+    position: absolute;
+    bottom: -10px; // Ajusta este valor para controlar la superposición del ícono sobre la imagen
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 10px;
+    
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+}
+
+// Asegúrate de que el título tenga un margen superior suficiente para no solaparse con la imagen y el ícono
+.card-title {
+  margin-top: 140px; // Ajusta este valor para que el título esté debajo de la imagen y el ícono de la cámara
+  font-size: 1.25rem; // O el tamaño que prefieras
+}
+
+.card-title {
+  margin-top: 1rem; // Ajusta este valor según la cantidad de espacio que necesites
+}
+.datos-personales-card {
+  // Estilos para el card
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(223, 234, 245); // O el color de fondo que prefieras
+    position: relative;
+  }
+
+  .edit-icon {
+    cursor: pointer;
+    // Ajusta el tamaño y color como prefieras
+    font-size: 1.2rem;
+    color: #248be6;
+  }
+  
+  // Estilos para los elementos de la lista
+  .list-group-item {
+    border: none;
+    padding-left: 20px; 
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+ 
+    
+  }
+    .field-title {
+      font-weight: bold; // Título en negrita
+    }
+    .field-value {
+      font-weight: normal; // Valor con la fuente normal
+    }
+  .list-group-item:hover {
+    background-color: rgba($primary-color, 0.1); // Ligero resaltado al pasar el ratón por encima
+  }
+  @media (max-width: 768px) {
+    padding: 10px; // Menos padding en dispositivos más pequeños
+    .card-header {
+      flex-direction: column; // Apila los elementos del header en dispositivos pequeños
+      align-items: flex-start; // Alinea al inicio para dispositivos pequeños
+    }
+  }
+}
+
+.contenido-desplegable {
+  transition: max-height 0.5s ease;
+  max-height: 50px; // Tamaño inicial para una vista previa
+  overflow: hidden;
+
+  &.expandido {
+    max-height: 500px; // o 'none' si quieres que se ajuste completamente al contenido
+  }
+
+  // Ajustes para pantallas pequeñas
+  @media (max-width: 768px) {
+    max-height: none; // Permite que se expanda según el contenido
+  }
+}
+

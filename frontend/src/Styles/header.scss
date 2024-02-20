@@ -1,0 +1,91 @@
+// Definición de colores y fuentes
+$estilo-letra: 'Century Gothic', sans-serif;
+$color-primary: #ffffff; // Blanco, considerando cambiar según la necesidad
+$color-secondary: #6c757d; // Gris para textos menos importantes
+$color-accent: #1a6abb; // Azul para fondos o énfasis
+$color-text: #333; // Oscuro para contraste
+$color-text-light: #ffffff; // Blanco para textos sobre fondos oscuros
+$color-hover: #ff8800; // Naranja vibrante para hover
+$tamaño-letra-nav: 20px;
+
+@keyframes fondoMovimiento {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.navbar {
+  background-color: $color-primary;
+  padding: 1rem 2rem;
+  border-bottom: 3px solid $color-secondary;
+  font-size: $tamaño-letra-nav;
+  font-family: $estilo-letra;
+  background: linear-gradient(270deg, #a6e3e9, #f5cbe7, #a1effd);
+  background-size: 400% 400%;
+  animation: fondoMovimiento 15s ease infinite;
+  color: transparent;
+  text-align: center;
+  .navbar-brand {
+    color: $color-text-light;
+    &:hover {
+      color: lighten($color-text-light, 10%);
+    }
+  }
+  .titulo-Chavp {
+    img {
+      margin-right: 0.5rem;
+    }
+    h2 {
+      background: linear-gradient(to right, rgba(14, 224, 161, 0.671), rgb(255, 115, 0), green);
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0;
+    }
+  }
+  .navbar-toggler {
+    border-color: rgba($color-text-light, 0.5);
+  }
+}
+
+.nav-link {
+  color: $color-text-light;
+  margin-right: 1rem;
+  &:hover,
+  &:focus {
+    color: $color-hover;
+  }
+  &.active {
+    color: $color-hover;
+  }
+}
+
+.nav-dropdown .dropdown-menu {
+  background-color: $color-primary;
+  .dropdown-item {
+    color: $color-text-light;
+    &:hover {
+      background-color: $color-accent;
+      color: $color-text;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar .nav-link {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid lighten($color-primary, 10%);
+  }
+}
+
+.user-initials-circle {
+  width: 35px;
+  height: 35px;
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 1em;
+  margin-left: 10px;
+}

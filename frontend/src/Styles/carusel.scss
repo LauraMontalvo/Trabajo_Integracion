@@ -1,0 +1,127 @@
+// styles/_carousel.scss
+$estilo-letra: 'Century Gothic', sans-serif;
+$tamaño-letra-centro: 50px;
+.carousel-container {
+  max-width: 90%; // Ajusta el ancho máximo del carrusel
+  margin: auto; // Centra el carrusel
+  max-height: 500px; // Ajusta la altura máxima del carrusel
+  margin-left: auto;
+  margin-right: auto;
+  .carousel-item img {
+    width: 100%;       // Asegura que la imagen ocupe todo el ancho disponible
+    height: auto;      // Ajusta la altura automáticamente para mantener la relación de aspecto
+    object-fit: contain; // Asegura que la imagen completa sea visible
+    max-height: 550px; // Establece una altura máxima para la imagen//aqui tambien se puede modificar el cuadro.
+  }
+  
+  .carousel-control-prev, .carousel-control-next {
+    color: #fff; /* Cambia el color según sea necesario */
+  
+    // Aumentar tamaño de las flechas, si es necesario
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      filter: invert(100%); // Cambia el color a blanco, ajusta según tu diseño
+    }
+  }
+  .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5); // Fondo semi-transparente para las leyendas
+    color: white; // Texto en color claro
+  }
+}
+
+// Responsividad para pantallas pequeñas
+@media (max-width: 768px) {
+  .carousel-container {
+    max-height: 300px;
+
+    img {
+      max-height: 300px;
+    }
+  }
+}
+
+  ///////////////
+  /// 
+  ///
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    text-align: center;
+
+   
+  
+    .image-container {
+      animation: rotateImage 5s linear infinite;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 20px;
+  
+      .loading-image {
+        width: 100px; // Ajusta este tamaño según tus necesidades
+        height: auto;
+      }
+    }
+  
+    .loading-text {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+  }
+  
+ 
+  
+  @keyframes rotateImage {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    .spinner {
+      width: 50px;
+      height: 50px;
+      color: #6c5ce7; // Cambia el color a uno más suave y amigable
+  
+      &:after {
+        border-radius: 50%; // Hace que la animación del spinner sea más suave
+      }
+    }
+  }
+
+h1{
+  background: linear-gradient(to right, rgba(14, 224, 161, 0.671), rgb(255, 115, 0), green);
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+
+  margin-bottom: 10px; // Ajusta según sea necesario
+  font-family: $estilo-letra;
+  font-size: $tamaño-letra-centro;
+}
+  .background-gradient {
+    background: linear-gradient(270deg, #a6e3e9, #f5cbe7, #a1effd);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  
+    animation: gradientBG 15s ease infinite;
+    background-size: 400% 400%;
+  }
+  
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  

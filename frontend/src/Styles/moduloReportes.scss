@@ -1,0 +1,144 @@
+// Definición de variables
+$background-color: #f9f9f9;
+$gradient-start: #9ab6f8;
+$gradient-end: #b19cd9;
+$shadow-color: rgba(0, 0, 0, 0.1);
+$shadow-hover-color: rgba(0, 0, 0, 0.15);
+$font-color: #333;
+$hover-duration: 0.3s;
+$icon-hover-color: #6e8efb;
+$font-family: 'Century Gothic', sans-serif; // Fuente importada
+
+// Aplicación de la fuente a través de la aplicación
+body {
+    font-family: $font-family;
+}
+
+
+// Animaciones clave
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Estilos del contenedor principal
+.dashboard-container {
+    padding: 20px;
+    background-color: $background-color;
+}
+
+// Estilos de las tarjetas
+.dashboard-card {
+    background: linear-gradient(145deg, $gradient-start, $gradient-end);
+    color: white;
+    box-shadow: 0 4px 8px $shadow-color;
+    border-radius: 12px;
+    margin-top: 20px;
+    transition: all $hover-duration ease;
+
+    &:hover {
+        animation: float 1.5s ease-in-out infinite;
+    }
+}
+
+// Estilos de los iconos
+.dashboard-icon {
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: rotate(10deg) scale(1.1);
+        color: $icon-hover-color;
+    }
+}
+
+// Estilos del valor mostrado
+.dashboard-value {
+    font-size: 2.2em;
+    font-weight: 600;
+    color: $font-color;
+}
+
+// Estilos del carrusel
+.carousel {
+    .carousel-item {
+        min-height: 250px;
+        transition: transform $hover-duration ease-in-out;
+
+        &:not(.active) {
+            display: none; // Ocultar elementos no activos para mejorar el rendimiento
+        }
+    }
+}
+
+// Estilos de las gráficas
+.dashboard-chart {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+
+// Variables (ajusta estos valores según tu esquema de colores y preferencias)
+$card-bg-color: #ffffff;
+$card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+$border-radius: 10px;
+$chart-legend-font-size: 14px;
+$chart-grid-color: rgba(200, 200, 200, 0.3);
+
+// Estilos para el contenedor de la gráfica
+.dashboard-chart-container {
+    padding: 20px;
+    background-color: $card-bg-color;
+    box-shadow: $card-shadow;
+    border-radius: $border-radius;
+    margin-bottom: 20px;
+    max-width: 100%; // Asegura que el contenedor no sobrepase su contenedor padre
+
+    canvas {
+        max-width: 100%; // Asegura que el canvas se ajuste al tamaño del contenedor
+    }
+}
+
+// Opciones adicionales para estilos de gráficas específicos (opcional)
+.chart-legend {
+    font-size: $chart-legend-font-size;
+}
+
+.chart-grid {
+    color: $chart-grid-color;
+}
+// Estilos para las secciones de Notificaciones y Actividades Recientes
+.list-group-section {
+    margin-bottom: 20px;
+    
+    .list-group-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+  
+    .list-group-item {
+      background-color: #f9f9f9; // Un color de fondo suave
+      border-left: 5px solid #6e8efb; // Una barra lateral para resaltar
+      margin-bottom: 5px;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #e3e6f0; // Un cambio sutil al pasar el cursor
+      }
+    }
+  }
+  

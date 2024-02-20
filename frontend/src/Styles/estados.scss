@@ -1,0 +1,17 @@
+// Definiendo colores para los estados
+$color-en-espera: #f0ad4e;  // Color amarillo para 'En Espera'
+$color-aceptada: #5cb85c;   // Color verde para 'Aceptada'
+$color-negada: #d9534f;     // Color rojo para 'Negada'
+
+// Clases para los iconos de estado
+.icono-en-espera {
+  color: $color-en-espera;
+}
+
+.icono-aceptada {
+  color: $color-aceptada;
+}
+
+.icono-negada {
+  color: $color-negada;
+}

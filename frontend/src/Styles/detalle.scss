@@ -1,0 +1,265 @@
+$estilo-letra: 'Century Gothic', sans-serif;
+$tamaño-letra: 15px;
+$tamaño-letra-modal: 60px;
+$tamaño-letra-modalbody: 16px;
+$color-titulo-modal: #495057;
+
+.tituloModal {
+  font-family: $estilo-letra;
+  color: $color-titulo-modal;
+  font-size: $tamaño-letra-modal;
+  font-weight: bold; // Esto hará que el texto esté en negrita
+}
+
+.tituloModalBody {
+  font-family: $estilo-letra;
+  font-size: $tamaño-letra-modalbody;
+  padding: 1rem;
+}
+
+.container {
+  font-family: $estilo-letra;
+  font-size: $tamaño-letra;
+
+  .usuario-info-container {
+    position: relative;
+    border: 4px solid #1ea7bd;
+    padding: 15px;
+    margin-top: 15px;
+    max-width: 350px; // Ajusta este valor según tus necesidades
+    padding: 10px; // Ajusta el padding si es necesario
+
+    
+    .bienvenido-titulo {
+      margin-bottom: 10px;
+
+    }
+
+    .edit-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: #0275d8; // Cambia este color si necesitas
+
+      &:hover {
+        color: #63a7e2; // Cambia este color para el hover si necesitas
+      }
+    }
+  }
+
+  .image-container {
+    margin-bottom: 15px; // Ajusta según sea necesario
+
+    .img-fluid {
+      max-width: 150px;
+      max-height: 150px;
+      border-radius: 60%; // Esto es para hacer la imagen circular, similar a roundedCircle
+    }
+  }
+
+  .editing-container {
+    text-align: center;
+
+    border: 4px solid #1ea7bd;
+    padding: 15px;
+    margin-top: 15px;
+    max-width: 350px; // Ajusta este valor según tus necesidades
+    padding: 10px; // Ajusta el padding si es necesario
+
+
+  }
+
+  .info-academica-container {
+
+
+    border: 4px solid #1ea7bd;
+    padding: 15px;
+    margin-top: 15px;
+    max-width: 350px; // Ajusta este valor según tus necesidades
+    padding: 10px; // Ajusta el padding si es necesario
+    float: left; // Alinea a la izquierda
+    margin-right: 100px;
+
+  }
+
+  .bienvenido-titulo {
+    color: #0275d8; // Un azul suave para el título
+    margin-bottom: 15px;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  .edit-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #0275d8; // Color del ícono a juego con el título
+
+    &:hover {
+      color: darken(#0275d8, 10%); // Un poco más oscuro al pasar el mouse
+    }
+  }
+
+}
+.botones-centrados {
+  display: flex;
+  justify-content: center;
+  gap: 20px; // Espacio entre botones
+  margin-top: 20px; // Espacio entre los botones y los campos del formulario
+ 
+}
+///detalle de empresa:
+// Estilos generales para la lista de empleos
+.empleos-lista {
+  h3 {
+    color: #007bff; // Cambia este color según tu paleta
+
+  }
+
+  .list-group-item {
+    padding: 15px;
+    margin-top: -5px; // Desplazamiento negativo para la superposición
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1; // Asegura que los elementos se superpongan correctamente
+
+    &:first-child {
+      margin-top: 10px; // El primer elemento no debe tener desplazamiento negativo
+    }
+    &:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .empleo-detalle {
+      margin-bottom: 10px; // Espacio debajo del contenedor de detalle del empleo
+    
+      h6 {
+        color: #343a40; // Color de texto para el título
+        margin-bottom: 5px; // Espacio debajo del título
+        font-size: 1.2rem; // Tamaño del título
+        font-weight: bold; // Texto en negrita para el título
+      }
+    
+      p {
+        font-size: 0.9rem; // Tamaño del texto para la descripción
+        color: #6c757d; // Color de texto para la descripción
+        margin-bottom: 10px; // Espacio debajo de la descripción
+        text-align: justify; // Alineación justificada del texto de la descripción
+      }
+    }
+    .iconos-acciones {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+
+      .fa-icon {
+        font-size: 1.2em;
+        margin-left: 15px;
+        cursor: pointer;
+        color: #6c757d;
+
+        &:hover {
+          color: #3a89dd; // Cambia este color para el hover
+        }
+      }
+    }
+  }
+}
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #3a78d6; /* Color Bootstrap primary */
+}
+
+.icono-estado {
+  margin-left: 5px;
+  color: #0d6efd; /* O el color que prefieras */
+  font-size: 1em; /* Ajusta el tamaño según necesites */
+}
+
+/* Opcional: añadir una suave rotación */
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.icono-estado {
+  animation: girar 2s linear infinite;
+}
+
+/////detalle de empleo al que postulo
+/// 
+/// 
+.detalleEmpleoModal {
+  .detalleEmpleoCard {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1rem;
+
+    .card-header {
+      background-color: #e9ecef;
+      font-weight: bold;
+    }
+
+    .card-body {
+      padding: 1rem;
+      p {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .verMasButton {
+      padding: 0;
+      border: none;
+      background: none;
+      color: #007bff;
+      text-decoration: underline;
+      font-size: 0.9em;
+      margin-left: 0.5rem;
+    }
+  }
+
+ 
+
+  .modalFooter {
+    border-top: 1px solid #dee2e6;
+    padding: 0.5rem;
+  }
+}
+// Definiendo colores para los estados
+// Clases para los iconos de estado
+.icono-en-espera {
+  color: #f0ad4e;  // Amarillo para 'En Espera'
+}
+
+.icono-aceptada {
+  color: #5cb85c;  // Verde para 'Aceptada'
+}
+
+.icono-negada {
+  color: #d9534f;  // Rojo para 'Negada'
+}
+.accordion-header-bold {
+  font-weight: bold;
+}
+.descripcion-empresa {
+  max-height: 100px; /* Establece la altura máxima que desees */
+  overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
+}
+.descripcion-personal {
+  padding: 10px; /* Añade relleno en todos los lados */
+  margin-bottom: 10px; /* Añade un margen en la parte inferior */
+  text-align: justify; /* Justifica el texto */
+
+}

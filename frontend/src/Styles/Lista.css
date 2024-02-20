@@ -1,0 +1,209 @@
+@charset "UTF-8";
+.icon-button {
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.edit-icon {
+  color: #17a2b8;
+}
+
+.delete-icon {
+  color: #dc3545;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Estilos para la barra lateral */
+.container-fluid {
+  padding: 2rem;
+}
+
+.user-card {
+  position: relative;
+  border: 1px solid #ced4da;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.user-card:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+.user-card .close-icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  cursor: pointer;
+  color: #6c757d;
+}
+.user-card .close-icon:hover {
+  color: #dc3545;
+}
+.user-card .profile-picture {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #007bff;
+  margin-bottom: 1rem;
+}
+.user-card h5 {
+  color: #495057;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.user-card .text-muted {
+  color: #6c757d;
+}
+.user-card .btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+  background-color: #f8f9fa;
+  margin-top: 1rem;
+}
+.user-card .btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Estilos CSS personalizados */
+.my-4 {
+  margin-top: 1.5rem !important;
+}
+
+h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+
+.card {
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: none !important;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+/* Agrega más estilos según tus preferencias */
+.job-card {
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+.job-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.job-image {
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.empresa-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.empresa-card .card-body {
+  padding: 1rem;
+}
+.empresa-card .card-body .row {
+  align-items: center;
+}
+.empresa-card .card-body .ratings {
+  display: flex;
+  align-items: center;
+}
+.empresa-card .card-body .ratings .fa-star {
+  margin-right: 0.25rem;
+}
+.empresa-card .card-title {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+.empresa-card .card-text {
+  margin-bottom: 0.25rem;
+}
+.empresa-card .card-text svg {
+  margin-right: 0.5rem;
+}
+.empresa-card .badge {
+  font-size: 0.85rem;
+  padding: 0.5em 0.75em;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .ver-postulaciones-button {
+    width: 100%; /* Hace que los botones ocupen todo el ancho disponible */
+    margin-bottom: 10px; /* Añade un poco de espacio entre los botones */
+  }
+}
+.publication-date {
+  color: #6c757d; /* Color gris para un aspecto suave */
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-top: -10px; /* Ajustar el margen según sea necesario */
+}
+
+/* Lista.scss */
+.card-custom {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-custom:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-header-custom {
+  background-color: #f8f9fa; /* Un color de fondo suave */
+  color: #333; /* Color de texto oscuro para contraste */
+  font-weight: bold;
+}
+
+.card-body-custom {
+  padding: 15px;
+}
+
+/* Estilos para el botón de postulación */
+/* Lista.scss */
+.postulation-button {
+  background-color: #007bff; /* Color primario para el botón */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  margin: 10px 0;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.postulation-button:hover {
+  background-color: #0056b3; /* Un tono más oscuro para el hover */
+}/*# sourceMappingURL=Lista.css.map */

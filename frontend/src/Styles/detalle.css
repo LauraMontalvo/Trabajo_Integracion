@@ -1,0 +1,223 @@
+@charset "UTF-8";
+.tituloModal {
+  font-family: "Century Gothic", sans-serif;
+  color: #495057;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.tituloModalBody {
+  font-family: "Century Gothic", sans-serif;
+  font-size: 16px;
+  padding: 1rem;
+}
+
+.container {
+  font-family: "Century Gothic", sans-serif;
+  font-size: 15px;
+}
+.container .usuario-info-container {
+  position: relative;
+  border: 4px solid #1ea7bd;
+  padding: 15px;
+  margin-top: 15px;
+  max-width: 350px;
+  padding: 10px;
+}
+.container .usuario-info-container .bienvenido-titulo {
+  margin-bottom: 10px;
+}
+.container .usuario-info-container .edit-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #0275d8;
+}
+.container .usuario-info-container .edit-icon:hover {
+  color: #63a7e2;
+}
+.container .image-container {
+  margin-bottom: 15px;
+}
+.container .image-container .img-fluid {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 60%;
+}
+.container .editing-container {
+  text-align: center;
+  border: 4px solid #1ea7bd;
+  padding: 15px;
+  margin-top: 15px;
+  max-width: 350px;
+  padding: 10px;
+}
+.container .info-academica-container {
+  border: 4px solid #1ea7bd;
+  padding: 15px;
+  margin-top: 15px;
+  max-width: 350px;
+  padding: 10px;
+  float: left;
+  margin-right: 100px;
+}
+.container .bienvenido-titulo {
+  color: #0275d8;
+  margin-bottom: 15px;
+}
+.container p {
+  margin-bottom: 10px;
+}
+.container .edit-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #0275d8;
+}
+.container .edit-icon:hover {
+  color: #025aa5;
+}
+
+.botones-centrados {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.empleos-lista h3 {
+  color: #007bff;
+}
+.empleos-lista .list-group-item {
+  padding: 15px;
+  margin-top: -5px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
+}
+.empleos-lista .list-group-item:first-child {
+  margin-top: 10px;
+}
+.empleos-lista .list-group-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.empleos-lista .list-group-item .empleo-detalle {
+  margin-bottom: 10px;
+}
+.empleos-lista .list-group-item .empleo-detalle h6 {
+  color: #343a40;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.empleos-lista .list-group-item .empleo-detalle p {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+.empleos-lista .list-group-item .iconos-acciones {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.empleos-lista .list-group-item .iconos-acciones .fa-icon {
+  font-size: 1.2em;
+  margin-left: 15px;
+  cursor: pointer;
+  color: #6c757d;
+}
+.empleos-lista .list-group-item .iconos-acciones .fa-icon:hover {
+  color: #3a89dd;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #3a78d6; /* Color Bootstrap primary */
+}
+
+.icono-estado {
+  margin-left: 5px;
+  color: #0d6efd; /* O el color que prefieras */
+  font-size: 1em; /* Ajusta el tamaño según necesites */
+}
+
+/* Opcional: añadir una suave rotación */
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.icono-estado {
+  animation: girar 2s linear infinite;
+}
+
+.detalleEmpleoModal .detalleEmpleoCard {
+  background: #f8f9fa;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+}
+.detalleEmpleoModal .detalleEmpleoCard .card-header {
+  background-color: #e9ecef;
+  font-weight: bold;
+}
+.detalleEmpleoModal .detalleEmpleoCard .card-body {
+  padding: 1rem;
+}
+.detalleEmpleoModal .detalleEmpleoCard .card-body p {
+  margin-bottom: 0.5rem;
+}
+.detalleEmpleoModal .detalleEmpleoCard .verMasButton {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #007bff;
+  text-decoration: underline;
+  font-size: 0.9em;
+  margin-left: 0.5rem;
+}
+.detalleEmpleoModal .modalFooter {
+  border-top: 1px solid #dee2e6;
+  padding: 0.5rem;
+}
+
+.icono-en-espera {
+  color: #f0ad4e;
+}
+
+.icono-aceptada {
+  color: #5cb85c;
+}
+
+.icono-negada {
+  color: #d9534f;
+}
+
+.accordion-header-bold {
+  font-weight: bold;
+}
+
+.descripcion-empresa {
+  max-height: 100px; /* Establece la altura máxima que desees */
+  overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
+}
+
+.descripcion-personal {
+  padding: 10px; /* Añade relleno en todos los lados */
+  margin-bottom: 10px; /* Añade un margen en la parte inferior */
+  text-align: justify; /* Justifica el texto */
+}/*# sourceMappingURL=detalle.css.map */

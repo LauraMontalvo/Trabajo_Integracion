@@ -1,0 +1,94 @@
+.card-actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  /* Asegúrate de que los botones no tengan bordes y sean solo íconos si prefieres un estilo minimalista */
+  .icono-edit-eliminar {
+    font-size: 1.5rem; /* Aumenta el tamaño de los iconos */
+    position: absolute;
+    top: 10px;
+    right: -100px;
+  }
+  .icon-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.icon-primary {
+  font-size: 24px; /* Tamaño grande para el ícono principal (Editar) */
+  color: #007bff; /* Color azul */
+  margin-right: 10px; /* Espacio entre íconos */
+}
+
+.icon-danger {
+  font-size: 24px; /* Tamaño grande para el ícono de eliminación */
+  color: #dc3545; /* Color rojo */
+}
+/* Estilo para los íconos */
+.icon-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .icon-primary {
+    font-size: 24px; /* Tamaño grande para el ícono principal (Editar) */
+    color: #007bff; /* Color azul */
+    margin-right: 10px; /* Espacio entre íconos */
+  }
+  
+  .icon-danger {
+    font-size: 24px; /* Tamaño grande para el ícono de eliminación */
+    color: #dc3545; /* Color rojo */
+  }
+  .card-inactive {
+    background-color: #f8d7da; /* Un tono suave de rojo para indicar inactividad */
+  }
+  
+  .user-status {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .icon-active {
+    color: green; /* Color para usuarios activos */
+  }
+  
+  .icon-inactive {
+    color: red; /* Color para usuarios inactivos */
+  }
+  .tarjeta-inactiva {
+    opacity: 0.5; /* Ajusta la opacidad como prefieras */
+    background-color: #d135353d; /* Color de fondo para tarjetas inactivas */
+}
+
+.btn-outline-azul {
+  color: #007bff; // Un tono de azul, ajusta este valor al color exacto que deseas
+  border-color: #007bff;
+
+  &:hover {
+    color: #fff; // Color del texto cuando se pasa el mouse por encima
+    background-color: #007bff; // Color de fondo cuando se pasa el mouse por encima
+    border-color: #007bff;
+  }
+
+  &:focus, &:active {
+    color: #fff; // Color del texto para el estado activo/foco
+    background-color: #0056b3; // Color de fondo más oscuro para el estado activo/foco
+    border-color: #0056b3;
+  }
+
+  // Asegúrate de ajustar los estados :hover y :active a tus necesidades
+}

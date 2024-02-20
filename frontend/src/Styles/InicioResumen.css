@@ -1,0 +1,64 @@
+@charset "UTF-8";
+.custom-card {
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.custom-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.custom-card.expanded {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.custom-card .card-body {
+  text-align: center;
+}
+.custom-card .card-icon {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+.custom-card .card-icon img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+}
+.custom-card .custom-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-footer {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+.card-footer.in {
+  max-height: 100px;
+  opacity: 1;
+}
+
+.total-empresas {
+  background-color: #f2f2f2; /* Fondo gris claro */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+.total-empresas h2 {
+  font-size: 24px;
+  color: #333; /* Color de texto oscuro */
+  margin-bottom: 10px;
+}
+
+.numero {
+  font-size: 36px;
+  color: #007bff; /* Color de texto azul (puedes cambiarlo según tus preferencias) */
+  font-weight: bold;
+}/*# sourceMappingURL=InicioResumen.css.map */

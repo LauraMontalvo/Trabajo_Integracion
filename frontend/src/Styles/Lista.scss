@@ -1,0 +1,228 @@
+.icon-button {
+    cursor: pointer;
+    font-size: 1.2rem; // Aumenta el tamaño del icono
+    margin-right: 10px; // Espacio entre iconos
+    display: inline-block; // Asegura que se muestren en línea
+    vertical-align: middle; // Alineación vertical en medio de la celda
+  }
+  
+  .edit-icon {
+    color: #17a2b8; // Color para el icono de editar, por ejemplo, azul
+  }
+  
+  .delete-icon {
+    color: #dc3545; // Color para el icono de eliminar, por ejemplo, rojo
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+//listausuriosresumen
+/* Estilos para la barra lateral */
+$primary-color: #007bff; // o cualquier color que coincida con tu paleta
+$background-color: #f8f9fa; // color de fondo para el botón "Ver perfil"
+$text-color: #495057; // color del texto principal
+$subtitle-color: #6c757d; // color del texto secundario
+$border-color: #ced4da; // color del borde de las tarjetas
+$shadow-color: rgba(0, 0, 0, 0.1); // color de la sombra para las tarjetas
+
+.container-fluid {
+  padding: 2rem;
+}
+
+.user-card {
+  position: relative;
+  border: 1px solid $border-color;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px $shadow-color;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 6px 10px $shadow-color;
+  }
+
+  .close-icon {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    cursor: pointer;
+    color: $subtitle-color;
+    &:hover {
+      color: #dc3545; // rojo para el botón de cierre al pasar el ratón
+    }
+  }
+
+  .profile-picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid $primary-color;
+    margin-bottom: 1rem;
+  }
+
+  h5 {
+    color: $text-color;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .text-muted {
+    color: $subtitle-color;
+  }
+
+  .btn-outline-primary {
+    border-color: $primary-color;
+    color: $primary-color;
+    background-color: $background-color;
+    margin-top: 1rem;
+    &:hover {
+      background-color: $primary-color;
+      color: #fff;
+    }
+  }
+}
+
+
+
+// Añade más estilos según necesites.
+//Lista empleos disponibes desde el usaurio : 
+/* Estilos CSS personalizados */
+.my-4 {
+  margin-top: 1.5rem !important;
+}
+
+h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+
+.card {
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: none !important;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+/* Agrega más estilos según tus preferencias */
+
+
+// Añade más estilos según necesites.
+
+//empleos
+.job-card {
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+}
+.job-image {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.empresa-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .card-body {
+    padding: 1rem;
+    .row {
+      align-items: center;
+    }
+    .ratings {
+      display: flex;
+      align-items: center;
+      .fa-star {
+        margin-right: 0.25rem;
+      }
+    }
+  }
+  .card-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+  }
+  .card-text {
+    margin-bottom: 0.25rem;
+    svg {
+      margin-right: 0.5rem;
+    }
+  }
+  .badge {
+    font-size: 0.85rem;
+    padding: 0.5em 0.75em;
+    margin-bottom: 0.5rem;
+  }
+}
+@media (max-width: 767px) {
+  .ver-postulaciones-button {
+      width: 100%; /* Hace que los botones ocupen todo el ancho disponible */
+      margin-bottom: 10px; /* Añade un poco de espacio entre los botones */
+  }
+}
+
+.publication-date {
+  color: #6c757d; /* Color gris para un aspecto suave */
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-top: -10px; /* Ajustar el margen según sea necesario */
+}
+/* Lista.scss */
+.card-custom {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-custom:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-header-custom {
+  background-color: #f8f9fa; /* Un color de fondo suave */
+  color: #333; /* Color de texto oscuro para contraste */
+  font-weight: bold;
+}
+
+.card-body-custom {
+  padding: 15px;
+}
+
+/* Estilos para el botón de postulación */
+/* Lista.scss */
+.postulation-button {
+  background-color: #007bff; /* Color primario para el botón */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  margin: 10px 0;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+      background-color: #0056b3; /* Un tono más oscuro para el hover */
+  }
+}
+
