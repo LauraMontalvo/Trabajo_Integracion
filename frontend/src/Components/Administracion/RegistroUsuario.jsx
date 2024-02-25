@@ -65,7 +65,7 @@ const RegistroUsuario = (props) => {
   const validarEdad = (fechaNacimiento) => {
     const fechaNac = new Date(fechaNacimiento);
     const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0); // Asegurarse de que solo se considera la fecha
+    hoy.setHours(0, 0, 0, 0); 
 
     // Verificar que la fecha de nacimiento no sea futura
     if (fechaNac > hoy) {
@@ -172,17 +172,15 @@ const RegistroUsuario = (props) => {
 
   const handleInputChange = (e, setterFunction, errorSetter, otherValue = null) => {
     const { name, value } = e.target;
-
-    // Validación específica para nombre y apellido que permite tildes
     if (name === 'nombre' || name === 'apellido') {
-      const regex = /^[A-Za-z\u00C0-\u00FF\s]+$/; // Permite letras, espacios, y letras con tildes
+      // Permite letras (con y sin tildes), espacios y la letra ñ
+      const regex = /^[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+$/;
       if (!regex.test(value) && value !== '') {
-        errorSetter('Este campo solo debe contener letras y tildes. No se permiten números ni caracteres especiales.');
+        errorSetter('Este campo solo debe contener letras. No se permiten números ni caracteres especiales.');
+        return; 
       } else {
-        errorSetter(''); // Limpia el mensaje de error si la validación es correcta
+        errorSetter(''); 
       }
-    } else {
-      // Continúa con el resto de la validación para otros campos
     }
 
     setterFunction(value);

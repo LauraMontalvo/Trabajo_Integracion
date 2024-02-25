@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Button, Form, Row, Col, Modal } from 'react-bootstrap';
+import { Button, Form, Row, Col, Modal,Alert } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../Styles/loginstyle.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -36,6 +36,7 @@ const EditarUsuario = ({ id, onUsuarioUpdated, closeEditModal }) => {
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
     const [usuarioError, setUsuarioError] = useState('');
+    const [updateStatus, setUpdateStatus] = useState({ msg: "", type: "" }); // Actualizado para manejar el mensaje y tipo
 
     const handleErrorModalClose = () => {
         setShowErrorModal(false);
@@ -149,28 +150,29 @@ const EditarUsuario = ({ id, onUsuarioUpdated, closeEditModal }) => {
     const handleNombreChange = (e) => {
         const nuevoNombre = e.target.value;
         setNombre(nuevoNombre);
-
-        
-        if (!nuevoNombre) {
-            setNombreError('El nombre es obligatorio');
+    
+        // Validación de nombre con tildes y ñ
+        const regex = /^[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+$/;
+        if (!regex.test(nuevoNombre) && nuevoNombre !== '') {
+            setNombreError('El nombre solo debe contener letras. No se permiten números ni caracteres especiales.');
         } else {
-            setNombreError('');
+            setNombreError(''); // Limpia el mensaje de error si la validación es correcta
         }
     };
-
     
     const handleApellidoChange = (e) => {
         const nuevoApellido = e.target.value;
         setApellido(nuevoApellido);
-
-
-        if (!nuevoApellido) {
-            setApellidoError('El apellido es obligatorio');
+    
+        // Validación de apellido con tildes y ñ
+        const regex = /^[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+$/;
+        if (!regex.test(nuevoApellido) && nuevoApellido !== '') {
+            setApellidoError('El apellido solo debe contener letras. No se permiten números ni caracteres especiales.');
         } else {
-            setApellidoError('');
+            setApellidoError(''); // Limpia el mensaje de error si la validación es correcta
         }
     };
-
+    
 
     const handleDescripcionPerChange = (e) => {
         const nuevaDescripcionPer = e.target.value;
@@ -259,7 +261,22 @@ const EditarUsuario = ({ id, onUsuarioUpdated, closeEditModal }) => {
         let esPasswordValido = true;
         let esConfirmPasswordValido = true;
 
+// Verifica si hay errores en los campos individuales
+    const hayErrores = [
+        nombreError,
+        apellidoError,
+        fechaNacimientoError,
+        telefonoError,
+        usuarioError,
+        descripcionPersonalError,
+        passwordError,
+        confirmPasswordError,
+    ].some(error => error !== '');
 
+    if (hayErrores) {
+        setUpdateStatus({ msg: 'Por favor corrija los errores antes de guardar.', type: 'danger' });
+        return; // Detiene la ejecución si hay errores
+    }
         if (password) {
             esPasswordValido = validarPassword();
             esConfirmPasswordValido = validarConfirmPassword();
@@ -522,10 +539,12 @@ const EditarUsuario = ({ id, onUsuarioUpdated, closeEditModal }) => {
                     </Col>
                 </Row>
 
-                <div>
-                    <p style={{ color: 'green' }}>{updateSuccess}</p>
-                    <p style={{ color: 'red' }}>{updateError}</p>
-                </div>
+                {updateStatus.msg && (
+                    <Alert variant={updateStatus.type} className="mt-3">
+                        {updateStatus.type === "danger" && <FontAwesomeIcon icon={faExclamationCircle} className="me-2" />}
+                        {updateStatus.msg}
+                    </Alert>
+                )}
 
                 <div className="botones-centrados">
                     <Button variant='primary' type="submit" className='btn'>Guardar</Button>

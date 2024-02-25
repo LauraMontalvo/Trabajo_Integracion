@@ -26,9 +26,9 @@ const ListaUsuariosResumen = (props) => {
   useEffect(() => {
     axios.get('https://46wm6186-8000.use.devtunnels.ms/api/users')
       .then(response => {
-        // Filtrar solo los usuarios activos antes de ordenarlos
+        // Filtrar solo los usuarios activos y no administradores, excluyendo al usuario actual
         const nonAdminActiveUsers = response.data.filter(user => 
-          user.estado === 'Activo' && user.rol !== 'Administrador'
+          user.estado === 'Activo' && user.rol !== 'Administrador' && user._id !== id
         );
         
         // Ordenar los usuarios por nombre
@@ -37,10 +37,10 @@ const ListaUsuariosResumen = (props) => {
         );
         
         setUsers(sortedUsers);
-        setFilteredUsers(sortedUsers);// Inicialmente, mostrar todos los usuarios activos ordenados
+        setFilteredUsers(sortedUsers); // Inicialmente, mostrar todos los usuarios activos ordenados, excluyendo al usuario actual
       })
       .catch(error => console.error(error));
-  }, []);
+  }, [id]);
 
   // Función para manejar la ocultación de un usuario de la lista
   const handleHideUser = (userId) => {

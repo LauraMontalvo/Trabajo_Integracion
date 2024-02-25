@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Button, Form, Row, Col } from 'react-bootstrap';
+import { Button, Form, Row, Col, Modal } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../Styles/loginstyle.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faInfoCircle, faLink, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import * as constantes from '../../Models/Constantes';
 
 const EditarEmpresaExterna = ({ id, onEmpresaUpdated, closeEditModal }) => {
 
-    const navigate = useNavigate();
 
     const [nombreEmpresa, setNombreEmpresa] = useState('');
     const [descripcionPublicacion, setDescripcionPublicacion] = useState('');
@@ -19,9 +18,9 @@ const EditarEmpresaExterna = ({ id, onEmpresaUpdated, closeEditModal }) => {
     const [nombreEmpresaError, setNombreEmpresaError] = useState('');
     const [descripcionPublicacionError, setDescripcionPublicacionError] = useState('');
     const [urlError, setUrlError] = useState('');
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     useEffect(() => {
-        // Asumiendo que tienes una URL base definida en tus constantes
         const fetchEmpresaData = async () => {
             try {
                 const response = await axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/externalCompany/${id}`);
@@ -36,15 +35,78 @@ const EditarEmpresaExterna = ({ id, onEmpresaUpdated, closeEditModal }) => {
 
         fetchEmpresaData();
     }, [id]);
+    const validarNombreEmpresa = (nombre) => {
+        if (!nombreEmpresa.trim()) return "El nombre de la empresa es obligatorio.";
+        // Aquí puedes agregar más validaciones si es necesario
+        return "";
+    };
+
+    const validarDescripcion = (descripcion) => {
+        if (!descripcionPublicacion.trim()) return "La descripción es obligatoria.";
+        // Más validaciones...
+        return "";
+    };
+    const validarUrl = (url) => {
+        if (!url.trim()) return "La URL es obligatoria.";
+        if (!/^(ftp|http|https):\/\/[^ "]+$/.test(url)) return "La URL no es válida.";
+        return "";
+    };
+    // Manejo del cambio en el nombre de la empresa
+    const handleNombreEmpresaChange = (e) => {
+        const value = e.target.value;
+        setNombreEmpresa(value);
+        const error = validarNombreEmpresa(value); // Usando la función de validación existente
+        setNombreEmpresaError(error);
+    };
+
+    // Manejo del cambio en la descripción de la publicación
+    const handleDescripcionPublicacionChange = (e) => {
+        const value = e.target.value;
+        setDescripcionPublicacion(value);
+        const error = validarDescripcion(value); // Usando la función de validación existente
+        setDescripcionPublicacionError(error);
+    };
+
+    // Manejo del cambio en la URL
+    const handleUrlChange = (e) => {
+        const value = e.target.value;
+        setUrl(value);
+        const error = validarUrl(value); // Usando la función de validación existente
+        setUrlError(error);
+    };
+    const handleSuccessModalClose = () => {
+        setShowSuccessModal(false); // Cierra el modal de éxito
+        closeEditModal(); // Cierra el modal de edición si está presente
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const errorNombreEmpresa = validarNombreEmpresa(nombreEmpresa);
+        const errorDescripcion = validarDescripcion(descripcionPublicacion);
+        const errorUrl = validarUrl(url);
+
+        // Actualizar estados de error
+        setNombreEmpresaError(errorNombreEmpresa);
+        setDescripcionPublicacionError(errorDescripcion);
+        setUrlError(errorUrl);
+
+        // Verificar si hay errores antes de enviar
+        if (errorNombreEmpresa || errorDescripcion || errorUrl) {
+            return; // Detener la ejecución si hay errores
+        }
+
         try {
-            await axios.put(`https://46wm6186-8000.use.devtunnels.ms/api/externalCompany/${id}`, {
+            const response = await axios.put(`https://46wm6186-8000.use.devtunnels.ms/api/externalCompany/${id}`, {
                 nombreEmpresa,
                 descripcionPublicacion,
                 url,
             });
+            // Llama a onEmpresaUpdated con los datos actualizados
+            onEmpresaUpdated(response.data);
+            closeEditModal(); // Cierra el modal si es necesario
+            // Muestra el modal de éxito
+            setShowSuccessModal(true);
         } catch (error) {
             console.error("Error al actualizar la empresa externa:", error);
         }
@@ -61,12 +123,9 @@ const EditarEmpresaExterna = ({ id, onEmpresaUpdated, closeEditModal }) => {
                                 type="text"
                                 placeholder="Ingrese el nombre de la empresa"
                                 value={nombreEmpresa}
-                                onChange={(e) => setNombreEmpresa(e.target.value)}
+                                onChange={handleNombreEmpresaChange} // Actualizado para usar la nueva función
                                 isInvalid={!!nombreEmpresaError}
                             />
-                            <Form.Control.Feedback type="invalid">
-                                {nombreEmpresaError}
-                            </Form.Control.Feedback>
                         </Form.Group>
                     </Col>
                     <Col md={6}>
@@ -77,7 +136,7 @@ const EditarEmpresaExterna = ({ id, onEmpresaUpdated, closeEditModal }) => {
                                 rows={3}
                                 placeholder="Descripción de la empresa"
                                 value={descripcionPublicacion}
-                                onChange={(e) => setDescripcionPublicacion(e.target.value)}
+                                onChange={handleDescripcionPublicacionChange}
                                 isInvalid={!!descripcionPublicacionError}
                             />
                             <Form.Control.Feedback type="invalid">
@@ -94,7 +153,7 @@ const EditarEmpresaExterna = ({ id, onEmpresaUpdated, closeEditModal }) => {
                                 type="text"
                                 placeholder="URL de la empresa"
                                 value={url}
-                                onChange={(e) => setUrl(e.target.value)}
+                                onChange={handleUrlChange}
                                 isInvalid={!!urlError}
                             />
                             <Form.Control.Feedback type="invalid">
@@ -107,6 +166,8 @@ const EditarEmpresaExterna = ({ id, onEmpresaUpdated, closeEditModal }) => {
                     Guardar Cambios
                 </Button>
             </Form>
+
+
         </div>
     );
 };

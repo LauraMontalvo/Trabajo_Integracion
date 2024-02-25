@@ -22,13 +22,13 @@ const ListaEmpresas = (props) => {
     axios.get('https://46wm6186-8000.use.devtunnels.ms/api/companies')
       .then(response => {
         const activasEmpresas = response.data
-          .filter(empresa => empresa.estado === 'Activo')
+          .filter(empresa => empresa.estado === 'Activo' && empresa._id !== id)
           .sort((a, b) => a.nombreEmpresa.localeCompare(b.nombreEmpresa));
         setEmpresas(activasEmpresas);
-        setFilteredEmpresas(activasEmpresas); // Mostrar solo empresas activas
+        setFilteredEmpresas(activasEmpresas);
       })
       .catch(error => console.error(error));
-  }, []);
+  }, [id]);
 
   const handleSearchChange = (event) => {
     const query = event.target.value.toLowerCase();
