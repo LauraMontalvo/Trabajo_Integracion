@@ -106,6 +106,10 @@ const RegistroEmpresaExterna = ({ onEmpresaRegistered, onCloseRegisterModal }) =
           descripcionPublicacion,
           url,
         });
+        // Invoca el callback después de un registro exitoso
+        if (onEmpresaRegistered) {
+          onEmpresaRegistered(response.data);
+        }
        
         
         handleSuccessModalShow();
@@ -113,9 +117,6 @@ const RegistroEmpresaExterna = ({ onEmpresaRegistered, onCloseRegisterModal }) =
         setNombreEmpresa('');
         setDescripcionPublicacion('');
         setUrl('');
-        if (onEmpresaRegistered) {
-          onEmpresaRegistered(response.data);
-        }
       } catch (error) {
         console.error(error);
         handleErrorModalShow();

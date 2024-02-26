@@ -49,7 +49,7 @@ const ListaEmpresasExternas = () => {
         setEmpresasExternasFiltradas(empresasOrdenadas); // Inicializa con todas las empresas externas
       })
       .catch(err => console.error("Error al obtener empresas externas:", err));
-  }, []);
+  }, [empresasExternas]);
 
   const handleFiltroNombreChange = (event) => {
     const query = event.target.value.toLowerCase();

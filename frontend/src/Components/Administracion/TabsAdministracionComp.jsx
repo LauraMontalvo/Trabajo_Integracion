@@ -148,13 +148,13 @@ const TabsAdministracionComp = ({ onAddInstitucion, onAddEmpresa, onRecargarUsua
       </Modal>
       {/*empresa externa*/}
       <Modal show={showRegisterCompanyExternalModal} onHide={handleCloseRegisterCompanyExternalModal} size="lg">
-        <Modal.Header closeButton>
-          <Modal.Title>Registrar Empresa Externa</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <RegistroEmpresaExterna onEmpresaRegistered={onAddEmpresa} onCloseRegisterModal={handleCloseRegisterCompanyExternalModal} />
-        </Modal.Body>
-      </Modal>
+  <Modal.Header closeButton>
+    <Modal.Title>Registrar Empresa Externa</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <RegistroEmpresaExterna onEmpresaRegistered={onAddEmpresa} onCloseRegisterModal={handleCloseRegisterCompanyExternalModal} />
+  </Modal.Body>
+</Modal>
 
       <Modal show={showRegisterUserModal} onHide={handleCloseRegisterUserModal} size="lg">
         <Modal.Header closeButton>
