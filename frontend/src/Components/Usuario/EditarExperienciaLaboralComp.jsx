@@ -24,23 +24,91 @@ const EditarExperienciaLaboral = ({ idExperiencia, onExperienciaEdited, closeEdi
     const [error, setError] = useState('');
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
+    const validarDescripcionResponsabilidades = (descripcion) => {
+        if (!descripcion.trim()) return "La descripción de responsabilidades es obligatoria.";
+        return "";
+    };
 
-    const handleSuccessModalClose = () => {
-        setShowSuccessModal(false);
-        if (closeEditModal) {
-            closeEditModal();
+    const validarAmbitoLaboral = (ambito) => {
+        if (!ambito.trim()) return "El ámbito laboral es obligatorio.";
+        return "";
+    };
+    const validarPuesto = (puesto) => {
+        if (!puesto.trim()) return "El puesto es obligatorio.";
+        return "";
+    };
+    const validarEmpresa = (empresa) => {
+        if (!empresa.trim()) return "El nombre de la empresa/razón social es obligatoria.";
+     
+        return "";
+    };
+    const validateFechaInicio = (fecha, setError) => {
+        if (!fecha) {
+            setError("La fecha de inicio es obligatoria.");
+        } else if (new Date(fecha) > new Date()) {
+            setError("La fecha de inicio no puede ser una fecha futura.");
+        } else {
+            setError("");
         }
+    };
+    
+    const validateFechaFin = (fecha, setError, fechaInicio) => {
+        if (!fecha) {
+            setError("La fecha de fin es obligatoria.");
+        } else if (new Date(fecha) < new Date(fechaInicio)) {
+            setError("La fecha de fin debe ser posterior a la fecha de inicio.");
+        } else if (new Date(fecha) > new Date()) {
+            setError("La fecha de fin no puede ser una fecha futura.");
+        } else {
+            setError("");
+        }
+    };
+    const handleDescripcionResponsabilidadesChange = (e) => {
+        const value = e.target.value;
+        setDescripcionResponsabilidades(value);
+        const error = validarDescripcionResponsabilidades(value);
+        setDescripcionResponsabilidadesError(error);
+    };
+    const handlePuestoChange = (e) => {
+        const value = e.target.value;
+        setPuesto(value);
+        const error = validarPuesto(value);
+        setPuestoError(error);
+    };
+    const handleAmbitoLaboralChange = (e) => {
+        const value = e.target.value;
+        setAmbitoLaboral(value);
+        const error = validarAmbitoLaboral(value);
+        setAmbitoLaboralError(error);
+    };
+    const handleEmpresaChange = (e) => {
+        const value = e.target.value;
+        setEmpresa(value);
+        const error = validarEmpresa(value);
+        setEmpresaError(error);
+    };
+    const handleFechaInicioChange = (e) => {
+        const value = e.target.value;
+        setFechaInicio(value);
+        validateFechaInicio(value, setFechaInicioError); 
+    };
+    
+    const handleFechaFinChange = (e) => {
+        const value = e.target.value;
+        setFechaFin(value);
+        validateFechaFin(value, setFechaFinError, fechaInicio); // Esto también
     };
     useEffect(() => {
         axios.get(`${constantes.URL_EDITAR_U_OBTENER_EXPERIENCIA_LABORAL}/${idExperiencia}`)
             .then(response => {
-                // Aquí estableces los estados con los datos obtenidos
-                setDescripcionResponsabilidades(response.data.descripcionResponsabilidades);
-                setAmbitoLaboral(response.data.ambitoLaboral);
-                setEmpresa(response.data.empresa);
-                setPuesto(response.data.puesto);
-                setFechaInicio(toShortDateFormat(response.data.fechaInicio));
-                setFechaFin(toShortDateFormat(response.data.fechaFin));
+           
+                const { descripcionResponsabilidades, ambitoLaboral, empresa, puesto, fechaInicio, fechaFin } = response.data;
+                setDescripcionResponsabilidades(descripcionResponsabilidades);
+                setAmbitoLaboral(ambitoLaboral);
+                setEmpresa(empresa);
+                setPuesto(puesto);
+                setFechaInicio(toShortDateFormat(fechaInicio));
+                setFechaFin(toShortDateFormat(fechaFin));
             })
             .catch(error => {
                 console.error('Error al cargar la experiencia', error);
@@ -50,7 +118,21 @@ const EditarExperienciaLaboral = ({ idExperiencia, onExperienciaEdited, closeEdi
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // ... Aquí incluyes tus validaciones ...
+
+        validarDescripcionResponsabilidades(descripcionResponsabilidades);
+        validarAmbitoLaboral(ambitoLaboral);
+        validarPuesto(puesto);
+        validarEmpresa(empresa);
+    
+   
+        validateFechaInicio(fechaInicio, setFechaInicioError);
+        validateFechaFin(fechaFin, setFechaFinError, fechaInicio);
+    
+
+        if (descripcionResponsabilidadesError || ambitoLaboralError || puestoError || empresaError || fechaInicioError || fechaFinError) {
+       
+            return; // Detiene la ejecución si hay errores
+        }
 
         axios.put(`${constantes.URL_EDITAR_U_OBTENER_EXPERIENCIA_LABORAL}/${idExperiencia}`, {
             descripcionResponsabilidades,
@@ -60,13 +142,11 @@ const EditarExperienciaLaboral = ({ idExperiencia, onExperienciaEdited, closeEdi
             fechaInicio,
             fechaFin
         })
-            .then(response => {
-                // Llamar a la función callback después de una actualización exitosa
-
+            .then(() => {
                 if (onExperienciaEdited) {
-                    onExperienciaEdited(); // Llama a la función callback
+                    onExperienciaEdited();
                 }
-                setShowSuccessModal(true);  // Muestra el modal de éxito
+                setShowSuccessModal(true);
             })
             .catch(error => {
                 console.error('Error al actualizar la experiencia', error);
@@ -74,44 +154,67 @@ const EditarExperienciaLaboral = ({ idExperiencia, onExperienciaEdited, closeEdi
             });
     };
 
+    const validarCampos = () => {
+        if (!descripcionResponsabilidades.trim() || !ambitoLaboral.trim() || !empresa.trim() || !puesto.trim() || !fechaInicio.trim() || !fechaFin.trim()) {
+            setError('Todos los campos son obligatorios');
+            return false;
+        }
+        setError('');
+        return true;
+    };
+
     function toShortDateFormat(dateString) {
         const date = new Date(dateString);
         return date.toISOString().split('T')[0];
     }
 
+    const handleSuccessModalClose = () => {
+        setShowSuccessModal(false);
+        if (closeEditModal) {
+            closeEditModal();
+        }
+    };
+
+
     return (
         <Form onSubmit={handleSubmit} className="mi-formulario">
             {error && <Alert variant="danger">{error}</Alert>}
             <Row>
-            <Col md={12}>
+                <Col md={12}>
                     <Form.Group>
                         <Form.Label>Puesto</Form.Label>
                         <div className="input-icon-wrapper">
                             <FontAwesomeIcon icon={faBriefcase} className="input-icon" />
                             <Form.Control
-                                as="textarea"
-                                rows={4}
-                                placeholder="Ingrese la descripción de sus responsabilidades"
+                                type="text" // Cambiado de 'as="textarea"' a 'type="text"' si solo es un input de una línea
+                                placeholder="Ingrese su puesto"
                                 value={puesto}
-                                onChange={e => setPuesto(e.target.value)}
+                                isInvalid={!!puestoError}
+                                onChange={handlePuestoChange}
                             />
+
                         </div>
+                        {puestoError && <p className="text-danger">{puestoError}</p>}
 
                     </Form.Group>
                 </Col>
                 <Col md={12}>
+
                     <Form.Group>
                         <Form.Label>Descripción de Responsabilidades</Form.Label>
                         <div className="input-icon-wrapper">
                             <FontAwesomeIcon icon={faBriefcase} className="input-icon" />
+
                             <Form.Control
                                 as="textarea"
                                 rows={4}
                                 placeholder="Ingrese la descripción de sus responsabilidades"
                                 value={descripcionResponsabilidades}
-                                onChange={e => setDescripcionResponsabilidades(e.target.value)}
+                                isInvalid={!!descripcionResponsabilidadesError}
+                                onChange={handleDescripcionResponsabilidadesChange}
                             />
                         </div>
+                        {descripcionResponsabilidadesError && <p className="text-danger">{descripcionResponsabilidadesError}</p>}
 
                     </Form.Group>
                 </Col>
@@ -122,27 +225,32 @@ const EditarExperienciaLaboral = ({ idExperiencia, onExperienciaEdited, closeEdi
                         <div className="input-icon-wrapper">
                             <FontAwesomeIcon icon={faBuilding} className="input-icon" />
                             <Form.Control
-                                as="textarea"
-                                rows={4}
-                                placeholder="Ingrese el ámbito laboral"
+                                type="text"
+                                placeholder="Ingrese el ámbito laboral o departamento"
                                 value={ambitoLaboral}
-                                onChange={e => setAmbitoLaboral(e.target.value)}
+                                isInvalid={!!ambitoLaboralError}
+                                onChange={handleAmbitoLaboralChange}
                             />
                         </div>
+                        {ambitoLaboralError && <p className="text-danger">{ambitoLaboralError}</p>}
+
                     </Form.Group>
                 </Col>
                 <Col md={12}>
                     <Form.Group>
-                        <Form.Label>Empresa/Razón Social</Form.Label>
-                        <div className="input-icon-wrapper">
-                            <FontAwesomeIcon icon={faBuilding} className="input-icon" />
-                            <Form.Control
-                                type="text"
-                                placeholder="Ingrese el nombre de la empresa"
-                                value={empresa}
-                                onChange={e => setEmpresa(e.target.value)}
-                            />
+                    <Form.Label>Empresa/Razón Social</Form.Label>
+    <div className="input-icon-wrapper">
+        <FontAwesomeIcon icon={faBuilding} className="input-icon" />
+        <Form.Control
+            type="text"
+            placeholder="Ingrese el nombre de la empresa"
+            value={empresa}
+            isInvalid={!!empresaError}
+            onChange={handleEmpresaChange}
+        />
                         </div>
+                        {empresaError && <p className="text-danger">{empresaError}</p>}
+
                     </Form.Group>
                 </Col>
                 <Col md={6}>
@@ -153,9 +261,12 @@ const EditarExperienciaLaboral = ({ idExperiencia, onExperienciaEdited, closeEdi
                             <Form.Control
                                 type="date"
                                 value={fechaInicio}
-                                onChange={e => setFechaInicio(e.target.value)}
+                                isInvalid={!!fechaInicioError}
+                                onChange={handleFechaInicioChange}
                             />
                         </div>
+                        {fechaInicioError && <p className="text-danger">{fechaInicioError}</p>}
+
                     </Form.Group>
                 </Col>
                 <Col md={6}>
@@ -166,9 +277,11 @@ const EditarExperienciaLaboral = ({ idExperiencia, onExperienciaEdited, closeEdi
                             <Form.Control
                                 type="date"
                                 value={fechaFin}
-                                onChange={e => setFechaFin(e.target.value)}
+                                isInvalid={!!fechaFinError}
+                                onChange={handleFechaFinChange}
                             />
                         </div>
+                        {fechaFinError && <p className="text-danger">{fechaFinError}</p>}
                     </Form.Group>
                 </Col>
             </Row>

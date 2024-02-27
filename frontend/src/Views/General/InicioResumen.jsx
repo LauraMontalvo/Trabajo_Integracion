@@ -41,8 +41,7 @@ const InicioResumen = (props) => {
     // ... otras tarjetas
   ];
 
-  console.log(usuario)
-  console.log('sddddddddddddddddddddddddddddddddddddddd')
+
   const esUsuario = usuario == "usuario"; // Cambia esto a `true` o `false` según corresponda
 
   return (

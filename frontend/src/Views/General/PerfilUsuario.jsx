@@ -18,6 +18,7 @@ function PerfilUsuario(props) {
     const [imagenPreview, setImagenPreview] = useState(null);
     const [certificaciones, setCertificaciones] = useState([]);
     const [verMasDescripcion, setVerMasDescripcion] = useState(false); // Nuevo estado para controlar la visualización
+    const [isLoading, setIsLoading] = useState(true); 
 
 
     const esUsuario = usuario == 'usuario';
@@ -30,6 +31,7 @@ function PerfilUsuario(props) {
 
     useEffect(() => {
         const fetchUserData = async () => {
+            
             try {
                 const userResponse = await axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/user/${idUsuario}`);
                 setUser(userResponse.data);

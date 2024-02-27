@@ -30,7 +30,7 @@ const LoginForm = (props) => {
       setLoginStatus({ msg: constantes.TEXTO_INGRESE_DATOS, type: "warning" });
 
     } else {
-      const hashedPassword = md5(password); // Cifrar la contraseña con md5
+      const hashedPassword = md5(password); // Cifra la contraseña con md5
 
       axios.post(constantes.URL_VALIDAR_AUTENTICACION, { usuario, password: hashedPassword })
         .then(respuesta => {
@@ -40,7 +40,7 @@ const LoginForm = (props) => {
 
             setTimeout(() => navigate('/detalleUsuario/' + user._id), 1000);
           } else {
-            setLoginStatus({ msg: respuesta.data.msg, type: "danger" }); // Puedes ajustar el tipo según corresponda
+            setLoginStatus({ msg: respuesta.data.msg, type: "danger" });
           }
         })
         .catch(err => {

@@ -30,7 +30,7 @@ const ListaInstituciones = () => {
 
   const handleCloseModals = () => {
     setEditarModal(false); // Cierra el modal de edición
-    setShowSuccessModal(false); // Intenta cerrar el modal de éxito, aunque este estado no exista aquí
+    setShowSuccessModal(false); 
   };
   
   
@@ -42,25 +42,25 @@ const ListaInstituciones = () => {
         setInstitucionesFiltradas(institucionesOrdenadas); // Inicializa con todas las instituciones
       })
       .catch(err => console.error("Error al obtener instituciones:", err));
-  }, [recargar]); // Dependencia del efecto: recargar
+  }, [recargar]); 
   const handleFiltroNombreChange = (event) => {
     const query = event.target.value.toLowerCase();
     setFiltroNombre(query);
 
-    // Filtrar las instituciones basado en el query de búsqueda
+
     const filtrados = instituciones.filter(institucion =>
       institucion.nombreInstitucion.toLowerCase().includes(query)
     );
-    setInstitucionesFiltradas(filtrados); // Actualiza la lista filtrada
+    setInstitucionesFiltradas(filtrados); 
   };
   const prepareDelete = (institucion) => {
-    setInstitucionToDelete(institucion); // Corregido
+    setInstitucionToDelete(institucion); 
     toggleDeleteModal();
   }
   const deleteInstitucion = () => {
     axios.delete(`https://46wm6186-8000.use.devtunnels.ms/api/school/${institucionToDelete._id}`)
       .then(res => {
-        console.log(res);
+
         removeFromDom(institucionToDelete._id);
         toggleDeleteModal();
       })

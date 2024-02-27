@@ -178,7 +178,8 @@ const RegistroUsuarioUS = (props) => {
     const { name, value } = e.target;
     // Validación específica para nombre y apellido
     if (name === 'nombre' || name === 'apellido') {
-      const regex = /^[A-Za-z\s]+$/; // Permite solo letras y espacios
+      // Permite letras (con y sin tildes), espacios y la letra ñ
+      const regex = /^[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+$/;
       if (!regex.test(value) && value !== '') {
         errorSetter('Este campo solo debe contener letras. No se permiten números ni caracteres especiales.');
         return; // Detiene la ejecución si la validación falla
@@ -277,7 +278,7 @@ const RegistroUsuarioUS = (props) => {
       estado: 'Activo'
     })
       .then((res) => {
-        console.log(res);
+   
         // Extraer la edad de la respuesta del servidor y establecerla en el estado
 
         handleSuccessModalShow();

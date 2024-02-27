@@ -33,6 +33,8 @@ import PerfilEmpresaAdmin from './Views/Administrador/PerfilEmpresaAdmin';
 import PerfilempresaUser from './Views/Usuarios/PerfilempresaUser';
 import PerfilUsuarioEmpresa from './Views/Empresa/PerfilUsuarioEmpresa';
 import ListaEmpresasExternas from './Views/Administrador/ListaEmpresasExternas';
+import InicioResumenUsuario from './Views/Usuarios/InicioResumenUsuario';
+import ListaEmpresasExternasUser from './Views/Usuarios/ListaEmpresasExternasUser';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,10 +64,21 @@ function App() {
             <Route path="/detalleUsuario/:id" element={<DetalleUsuario isAuthenticated={isAuthenticated} />} />
             <Route path="/buscarEmpleos/:id" element={<BuscarEmpleo />} />
             <Route path="/perfilEmpresa/:id/:idEmpresa/" element={<PerfilempresaUser />} />
+            <Route path="/resumenUsuario/:id/:usuario" element={<InicioResumenUsuario isAuthenticated={isAuthenticated} />} />
+            <Route path="resumenUsuario/usuariosResumen/:id/:usuario" element={<ListaUsuariosResumen isAuthenticated={isAuthenticated}/>} />
+            <Route path="resumenUsuario/empresasResumen/:id/:usuario" element={<ListaEmpresasResumen isAuthenticated={isAuthenticated}/>} />
+            <Route path="resumenUsuario/empleosResumen/:id/:usuario" element={<ListaEmpleosResumen isAuthenticated={isAuthenticated} />} />
+            <Route path="resumenUsuario/empresasexternas/:id/:usuario" element={<ListaEmpresasExternasUser isAuthenticated={isAuthenticated}/>} />
+
             {/*Empresa*/}
             <Route path="/empresa" element={<LoginFormEmpresa />} />
             <Route path="/detalleEmpresa/:id" element={<DetalleEmpresa />} />
             <Route path="/perfilUsuario/:id/:idUsuario/" element={<PerfilUsuarioEmpresa />} />
+            <Route path="/resumen/:id/:usuario" element={<InicioResumen isAuthenticated={isAuthenticated} />} />
+            <Route path="resumen/usuariosResumen/:id/:usuario" element={<ListaUsuariosResumen isAuthenticated={isAuthenticated}/>} />
+            <Route path="resumen/empresasResumen/:id/:usuario" element={<ListaEmpresasResumen isAuthenticated={isAuthenticated}/>} />
+            <Route path="resumen/empleosResumen/:id/:usuario" element={<ListaEmpleosResumen isAuthenticated={isAuthenticated} />} />
+
             {/*Admin*/}
             <Route path="/admin" element={<LoginAdminForm />} />
             <Route path="/admin/consola/:id" element={<AdminConsola />} />
@@ -82,12 +95,8 @@ function App() {
             {/*General tanto clientes como empresas*/}
             <Route path="/perfil-empresa/:id/:idEmpresa/:usuario" element={<PerfilEmpresa />} />
             <Route path="/perfilUsuario/:id/:idUsuario/:usuario" element={<PerfilUsuario />} />
-            <Route path="/resumen/:id/:usuario" element={<InicioResumen isAuthenticated={isAuthenticated} />} />
-            <Route path="resumen/usuariosResumen/:id/:usuario" element={<ListaUsuariosResumen isAuthenticated={isAuthenticated}/>} />
-            <Route path="resumen/empresasResumen/:id/:usuario" element={<ListaEmpresasResumen isAuthenticated={isAuthenticated}/>} />
-            <Route path="resumen/empleosResumen/:id/:usuario" element={<ListaEmpleosResumen isAuthenticated={isAuthenticated} />} />
-
-
+          
+    
           </Routes>
         )}
       </>

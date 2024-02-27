@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, Container, Row, Col, Form } from 'react-bootstrap';
+import { Card, Container, Row, Col, Form,Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import "../../Styles/loginstyle.css";
@@ -16,16 +16,24 @@ const ListaEmpleos = (props) => {
   const {usuario} = useParams();
   const esUsuario = usuario == "usuario"; // Cambia esto a `true` o `false` según corresponda
   const isAuthenticated = props.isAuthenticated;
+  const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
+    setIsLoading(true); // Inicia la carga
+
     axios.get('https://46wm6186-8000.use.devtunnels.ms/api/jobs')
       .then(response => {
         // Suponiendo que cada empleo tiene un objeto idEmpresa con un campo nombreEmpresa
         const empleosActivos = response.data.filter(empleo => empleo.estado === 'Activo');
         setEmpleos(empleosActivos);
         setFilteredEmpleos(empleosActivos);
+        setIsLoading(false); // Finalizar carga // Inicialmente, muestra todos los usuarios activos ordenados, excluyendo al usuario actual
+
       })
-      .catch(error => console.error('Error al cargar empleos:', error));
+      .catch(error => {
+        console.error(error);
+        setIsLoading(false); // Finaliza la carga con error
+      });
   }, []);
 
   const handleSearchChange = (event) => {
@@ -62,6 +70,11 @@ const ListaEmpleos = (props) => {
               />
             </Form.Group>
           </Col>
+          {isLoading ? (
+          <div className="text-center">
+                <Spinner animation="border" className="mx-auto" /> 
+          </div>
+        ) : (
           <Col md={9}>
             <Col md={12} className="mb-3">
               <div className="total-empresas">
@@ -100,6 +113,7 @@ const ListaEmpleos = (props) => {
               ))}
             </Row>
           </Col>
+            )}
         </Row>
       </Container>
     </div>

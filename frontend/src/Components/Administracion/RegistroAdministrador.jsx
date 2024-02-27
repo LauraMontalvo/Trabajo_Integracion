@@ -158,8 +158,6 @@ const RegistroAdministrador = ({ onRegistroExitoso }) => {
         errorSetter('');
       }
     }
-
-    // ... Lógica para otros campos ...
     setterFunction(value);
     // Validación de la Contraseña
     if (name === 'password') {
@@ -194,15 +192,14 @@ const RegistroAdministrador = ({ onRegistroExitoso }) => {
         errorSetter('');
       }
     }
-    // Validación para otros campos
 
   };
 
   const handleTelefonoChange = (e) => {
-    let value = e.target.value.replace(/[^0-9]/g, ''); // Elimina caracteres no numéricos
+    let value = e.target.value.replace(/[^0-9]/g, ''); 
 
     if (value.length > 10) {
-      value = value.substring(0, 10); // Restringe el valor a los primeros 10 dígitos
+      value = value.substring(0, 10); 
     }
 
     setTelefono(value);
@@ -218,13 +215,11 @@ const RegistroAdministrador = ({ onRegistroExitoso }) => {
     e.preventDefault();
     // Validar formulario
     if (!validarFormularioAntesDeEnviar()) {
-      // Si el formulario no es válido, termina la función aquí
+
       return;
     }
     const fecha = new Date(fechaNacimiento);
-    // Ajustar la fecha al huso horario de Ecuador (UTC-5)
     const fechaAjustada = new Date(fecha.getTime() - (5 * 60 * 60 * 1000));
-
     axios.post(constantes.URL_USUARIO_NUEVO, {
       nombre,
       apellido,
@@ -239,8 +234,6 @@ const RegistroAdministrador = ({ onRegistroExitoso }) => {
     })
       .then((res) => {
         console.log(res);
-        // Extraer la edad de la respuesta del servidor y establecerla en el estado
-
         handleSuccessModalShow();
         setNombre('');
         setApellido('');

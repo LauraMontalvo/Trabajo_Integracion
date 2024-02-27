@@ -16,7 +16,7 @@ const CampoEstado = ({ mensajeError }) => {
 const EditarInstitucionComp = ({ idInstitucion, onInstitucionActualizada, onCloseModals }) => {
     const [nombreInstitucion, setNombreInstitucion] = useState('');
     const [ubicacion, setUbicacion] = useState('');
-    const [ubicacionError, setUbicacionError] = useState(''); // Corregido
+    const [ubicacionError, setUbicacionError] = useState(''); 
 
 
     const [nombreInstitucionError, setNombreInstitucionError] = useState('');
@@ -29,7 +29,7 @@ const EditarInstitucionComp = ({ idInstitucion, onInstitucionActualizada, onClos
 
     const handleSuccessModalClose = () => {
         setShowSuccessModal(false);
-        if (onCloseModals) onCloseModals(); // Llamando directamente a onCloseModals
+        if (onCloseModals) onCloseModals(); 
     };
     const esCampoValido = (valor, error) => {
         return valor !== '' && error === '';
@@ -44,8 +44,6 @@ const EditarInstitucionComp = ({ idInstitucion, onInstitucionActualizada, onClos
     const handleInputChange = (e) => {
         const { value } = e.target;
         setNombreInstitucion(value);
-
-        // Validar el campo cada vez que cambia
         validarNombreInstitucion(value, setNombreInstitucionError);
     };
     useEffect(() => {
@@ -53,7 +51,7 @@ const EditarInstitucionComp = ({ idInstitucion, onInstitucionActualizada, onClos
             axios.get(`${constantes.URL_OBTENER_UNA_INSTITUCION}/${idInstitucion}`)
                 .then(res => {
                     setNombreInstitucion(res.data.nombreInstitucion);
-                    setUbicacion(res.data.ubicacion || ''); // Agregado para manejar la ubicación
+                    setUbicacion(res.data.ubicacion || ''); 
                 })
                 .catch(err => console.log(err));
         }
@@ -64,27 +62,27 @@ const EditarInstitucionComp = ({ idInstitucion, onInstitucionActualizada, onClos
         if (!value.trim()) {
             setError(constantes.TEXTO_NOMBRE_INSTITUCION_OBLIGATORIO);
         } else {
-            setError(''); // Limpia el mensaje de error
+            setError(''); 
         }
     };
     const validarUbicacion = (value, setError) => {
         if (!value.trim()) {
             setError(constantes.TEXTO_NOMBRE_INSTITUCION_OBLIGATORIO);
         } else {
-            setError(''); // Limpia el mensaje de error
+            setError(''); 
         }
     };
     const handlerUpdateInstitucion = (e) => {
         e.preventDefault();
         if (nombreInstitucionError || ubicacionError) {
-            return; // Detiene la ejecución si hay errores
+            return; 
         }
 
         axios.put(`${constantes.URL_ACTUALIZAR_INSTITUCION}/${idInstitucion}`, { nombreInstitucion, ubicacion })
             .then((res) => {
                 setUpdateSuccess("Institución actualizada correctamente");
                 setUpdateError('');
-                setShowSuccessModal(true); // Mostrar el modal de éxito
+                setShowSuccessModal(true); // Muestra el modal de éxito
                 if (onInstitucionActualizada) {
                     onInstitucionActualizada(res.data);
                 }

@@ -64,8 +64,6 @@ const EditarAdministrador = ({ id, onAdministradorUpdated, closeEditModal }) => 
     const handleFechaNacimientoChange = (e) => {
         const nuevaFechaNacimiento = e.target.value;
         setFechaNacimiento(nuevaFechaNacimiento);
-
-        // Valida la edad y actualiza el mensaje de error
         if (!validarEdad(nuevaFechaNacimiento)) {
             setFechaNacimientoError("Debes tener al menos 18 años.");
         } else {
@@ -77,7 +75,7 @@ const EditarAdministrador = ({ id, onAdministradorUpdated, closeEditModal }) => 
             setNombreError('El nombre es obligatorio');
             return false;
         }
-        // Agregar más lógica de validación si es necesario
+
         setNombreError('');
         return true;
     };
@@ -88,7 +86,6 @@ const EditarAdministrador = ({ id, onAdministradorUpdated, closeEditModal }) => 
             setApellidoError('El apellido es obligatorio');
             return false;
         }
-        // Agregar más lógica de validación si es necesario
         setApellidoError('');
         return true;
     };
@@ -96,7 +93,7 @@ const EditarAdministrador = ({ id, onAdministradorUpdated, closeEditModal }) => 
         if (!telefono) {
             setTelefonoError('El número de teléfono es obligatorio');
             return false;
-        } else if (telefono.length !== 10) { // Asumiendo que esperas 10 dígitos
+        } else if (telefono.length !== 10) { 
             setTelefonoError('El número de teléfono debe tener 10 dígitos');
             return false;
         }
@@ -130,7 +127,7 @@ const EditarAdministrador = ({ id, onAdministradorUpdated, closeEditModal }) => 
             setPasswordError('');
             return true;
         }
-        return true; // Si no se intenta cambiar la contraseña, considerarla válida
+        return true; 
     };
     const validarConfirmPassword = () => {
         if (password && confirmPassword !== password) {
@@ -143,8 +140,6 @@ const EditarAdministrador = ({ id, onAdministradorUpdated, closeEditModal }) => 
     const handleNombreChange = (e) => {
         const nuevoNombre = e.target.value;
         setNombre(nuevoNombre);
-
-        // Establece o elimina el mensaje de error según el contenido del campo
         if (!nuevoNombre) {
             setNombreError('El nombre es obligatorio');
         } else {
@@ -152,12 +147,10 @@ const EditarAdministrador = ({ id, onAdministradorUpdated, closeEditModal }) => 
         }
     };
 
-    // Actualizar la función de manejo de cambio para el apellido
+
     const handleApellidoChange = (e) => {
         const nuevoApellido = e.target.value;
         setApellido(nuevoApellido);
-
-        // Establece o elimina el mensaje de error según el contenido del campo
         if (!nuevoApellido) {
             setApellidoError('El apellido es obligatorio');
         } else {
@@ -165,26 +158,11 @@ const EditarAdministrador = ({ id, onAdministradorUpdated, closeEditModal }) => 
         }
     };
 
-    const verificarUsuarioExistente = async () => {
-        try {
-            const response = await axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/usuarios/verificar/${usuario}`);
-            if (response.data.existe && response.data.usuarioId !== id) {
-                setUsuarioError('El nombre de usuario ya está en uso por otro usuario.');
-                return false;
-            }
-        } catch (error) {
-            console.error('Error al verificar el usuario existente', error);
-            return false;
-        }
-        return true;
-    };
 
 
     const handleUsuarioChange = (e) => {
         const nuevoUsuario = e.target.value;
         setUsuario(nuevoUsuario);
-
-        // Establece o elimina el mensaje de error según el contenido del campo
         if (!nuevoUsuario.trim()) {
             setUsuarioError('El nombre de usuario es obligatorio');
         } else {
@@ -208,10 +186,10 @@ const EditarAdministrador = ({ id, onAdministradorUpdated, closeEditModal }) => 
     const rol = "Administrador";
 
     const handleTelefonoChange = (e) => {
-        let value = e.target.value.replace(/[^0-9]/g, ''); // Elimina caracteres no numéricos
+        let value = e.target.value.replace(/[^0-9]/g, ''); 
 
         if (value.length > 10) {
-            value = value.substring(0, 10); // Restringe el valor a los primeros 10 dígitos
+            value = value.substring(0, 10); 
         }
 
         setTelefono(value);
@@ -233,7 +211,7 @@ const EditarAdministrador = ({ id, onAdministradorUpdated, closeEditModal }) => 
                 setTelefono(res.data.telefono);
                 setUsuario(res.data.usuario);
 
-                // No necesitas setear las contraseñas aquí
+               
             })
             .catch(err => console.log(err));
     }, [id]);
@@ -254,30 +232,27 @@ const EditarAdministrador = ({ id, onAdministradorUpdated, closeEditModal }) => 
         e.preventDefault();
         let esPasswordValido = true;
         let esConfirmPasswordValido = true;
-
-        // Solo validar si el usuario ha intentado cambiar la contraseña
         if (password) {
             esPasswordValido = validarPassword();
             esConfirmPasswordValido = validarConfirmPassword();
         }
 
         if (!esPasswordValido || !esConfirmPasswordValido) {
-            return; // Detiene la función si hay errores
+            return; 
         }
         const esNombreValido = validarNombre();
         const esApellidoValido = validarApellido();
         const esTelefonoValido = validarTelefono();
         const esUsuarioValido = validarUsuario();
 
-        // ... (Validar otros campos)
-
+   
         if (!esNombreValido || !esApellidoValido || !esTelefonoValido || !esUsuarioValido) {
-            return; // Detener si hay errores
+            return; 
         }
 
-        // Verificar si la fecha de nacimiento es válida antes de actualizar
+        
         if (fechaNacimientoError) {
-            return; // Detiene la función si hay errores
+            return; 
         }
 
         if (password !== confirmPassword) {
@@ -292,8 +267,6 @@ const EditarAdministrador = ({ id, onAdministradorUpdated, closeEditModal }) => 
             fechaNacimiento,
             telefono,
             usuario,
-
-            // Solo incluye las contraseñas si realmente se han ingresado nuevas
             ...(password && confirmPassword && { password: md5(password) })
         };
 
@@ -301,16 +274,16 @@ const EditarAdministrador = ({ id, onAdministradorUpdated, closeEditModal }) => 
             .then((res) => {
 
                 setUpdateError('');
-                // Limpia los campos de contraseña después de la actualización
+  
                 setPassword('');
                 setConfirmPassword('');
-                // Refresca los datos del usuario
+
                 refrescarDatosUsuario();
-                // Maneja la respuesta exitosa
+          
 
-                onAdministradorUpdated(); // Llama a esta función para actualizar la lista de administradores en el componente padre
+                onAdministradorUpdated(); 
 
-                setShowSuccessModal(true);  // Muestra el modal de éxito
+                setShowSuccessModal(true);  
 
             })
             .catch((err) => {

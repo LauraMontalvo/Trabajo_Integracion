@@ -158,7 +158,7 @@ const ExperieciaLaboral = ({  idUsuario,onExperienciaAdded, closeAddModal }) => 
         idUsuario
       })
         .then((res) => {
-          console.log(res);
+       
           setShowSuccessModal(true);
           setDescripcionResponsabilidades('');
           setAmbitoLaboral('');

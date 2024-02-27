@@ -55,7 +55,7 @@ const RegistroInstituciones = ({ onInstitucionRegistered, onCloseRegisterModal }
   const handleInputChange = (e, setterFunction, errorSetter) => {
     const { value } = e.target;
 
-    setterFunction(value); // Asegúrate de que esta línea esté actualizando el estado
+    setterFunction(value);
 
     if (!value) {
       errorSetter(constantes.TEXTO_ESTE_CAMPO_ES_OBLIGATORIO);
@@ -70,18 +70,18 @@ const RegistroInstituciones = ({ onInstitucionRegistered, onCloseRegisterModal }
 
     if (!nombreInstitucion) {
       setNombreInstitucionError('El nombre de la institución es obligatorio');
-      return; // Evita enviar la solicitud si hay errores de validación
+      return; 
     }
     if (!ubicacion) {
       setUbicacionError('La ubicación de la institución es obligatoria');
-      return; // Evita enviar la solicitud si hay errores de validación
+      return; 
     }
     axios.post(constantes.URL_AGREGAR_NUEVA_INSTITUCION, { nombreInstitucion, ubicacion })
       .then((res) => {
         console.log(res);
-        setShowModal(true); // Mostrar modal al registrar con éxito
+        setShowModal(true); 
         if (onInstitucionRegistered) {
-          onInstitucionRegistered(res.data); // Asegúrate de que res.data es la institución
+          onInstitucionRegistered(res.data); 
         }
         handleSuccessModalShow();
         setNombreInstitucion('');
@@ -93,7 +93,7 @@ const RegistroInstituciones = ({ onInstitucionRegistered, onCloseRegisterModal }
         console.log(err);
         if (err.response) {
           console.log(err.response.data); // Muestra detalles del error del servidor
-          // Manejo adicional basado en la respuesta del servidor
+          
         }
         handleErrorModalShow();
       });
