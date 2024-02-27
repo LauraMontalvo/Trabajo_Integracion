@@ -72,7 +72,7 @@ const ListaEmpresas = (props) => {
   const deleteEmpresa = () => {
     axios.delete(`https://46wm6186-8000.use.devtunnels.ms/api/company/${empresaToDelete._id}`)
       .then(res => {
-        console.log(res);
+     
         removeFromDom(empresaToDelete._id);
         toggleDeleteModal();
       })
@@ -116,7 +116,7 @@ const ListaEmpresas = (props) => {
 
     axios.put(`https://46wm6186-8000.use.devtunnels.ms/api/company/${empresa._id}`, { estado: nuevoEstado })
       .then(res => {
-        console.log(res);
+     
         setEmpresas(empresas.map(emp => emp._id === empresa._id ? { ...emp, estado: nuevoEstado } : emp));
       })
       .catch(err => console.error("Error al cambiar el estado de la empresa:", err));

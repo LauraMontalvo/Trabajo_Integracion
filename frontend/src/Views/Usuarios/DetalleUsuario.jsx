@@ -101,7 +101,7 @@ function DetalleUsuario(props) {
       setErrorUbicacion('La ubicación es obligatoria.');
       return false;
     }
-    // Aquí puedes añadir más validaciones si lo necesitas
+
     setErrorUbicacion('');
     return true;
   };
@@ -140,10 +140,10 @@ function DetalleUsuario(props) {
   const handleCloseAddAcadModal = () => setShowAddAcadModal(false);
 
   const refreshAcadTraining = () => {
-    // Aquí puedes recargar la información académica del usuario
+
     axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/acadTrainings/user/${id}`)
       .then(response => {
-        // Suponiendo que setAcadTraining es tu función para actualizar el estado de la formación académica
+        
         setAcadTraining(response.data);
       })
       .catch(error => {
@@ -163,8 +163,8 @@ function DetalleUsuario(props) {
     if (deleteExperienceId) {
       try {
         await axios.delete(`https://46wm6186-8000.use.devtunnels.ms/api/workExperience/${deleteExperienceId}`);
-        // Aquí actualizarías el estado para reflejar la eliminación
-        cargarExperienciaLaboral(); // Suponiendo que esta función recarga la experiencia laboral
+ 
+        cargarExperienciaLaboral();
         handleCloseDeleteExperienceModal();
       } catch (error) {
         console.error('Error al eliminar experiencia laboral', error);
@@ -229,7 +229,7 @@ function DetalleUsuario(props) {
   };
   const validarFechaFin = (fechaInicio, fechaFin) => {
     const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0); // Establece la hora actual a medianoche para ignorar la hora
+    hoy.setHours(0, 0, 0, 0); 
 
     if (!fechaFin) {
       setFechaFinError('La fecha de fin es obligatoria.');
@@ -445,10 +445,10 @@ function DetalleUsuario(props) {
 
     const institucionEncontrada = instituciones.find(inst => inst._id === institucionCarga.value);
     if (institucionEncontrada) {
-      console.log("Institución encontrada con ubicación: ", institucionEncontrada.ubicacion);
+  
       setUbicacion(institucionEncontrada.ubicacion);
     } else {
-      console.log("Nueva institución, configurando ubicación vacía");
+   
       setUbicacion('');
     }
   };
@@ -525,10 +525,10 @@ function DetalleUsuario(props) {
       console.error('Error al agregar/editar datos académicos:', error);
     }
   };
-  // En DetalleUsuario, añade una función para manejar el cierre del modal
+
   const [showAddExperienceModal, setShowAddExperienceModal] = useState(false);
 
-  // Función para cerrar el modal de agregar experiencia laboral
+
   const handleCloseAddExperienceModal = () => {
     setShowAddExperienceModal(false);
   };
@@ -542,7 +542,7 @@ function DetalleUsuario(props) {
       return 'No disponible';
     }
 
-    // Ya que la fecha está en formato ISO, simplemente devuelve la parte de la fecha.
+
     return dateString.split('T')[0];
   };
   const handleDeleteAcadTraining = async (acadTrainingId) => {
@@ -557,7 +557,7 @@ function DetalleUsuario(props) {
   const handleDeleteExperience = async (id) => {
     try {
       await axios.delete(`https://46wm6186-8000.use.devtunnels.ms/api/workExperience/${id}`);
-      // Filtrar la experiencia eliminada del estado
+
       const updatedExperiences = experienciaLaboral.filter(experiencia => experiencia._id !== id);
       setexperienciaLaboral(updatedExperiences);
     } catch (error) {
@@ -577,7 +577,7 @@ function DetalleUsuario(props) {
       <Container fluid className="mt-4">
         <Row>
           <Col xs={12} md={6} lg={4}  >
-            {/* Información del usuario */}
+
             <Card className="datos-personales-card">
               <Card.Body className="mt-4">
                 <ImagenPerfil

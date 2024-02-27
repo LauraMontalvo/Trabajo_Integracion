@@ -278,7 +278,7 @@ const RegistroUsuarioUS = (props) => {
       estado: 'Activo'
     })
       .then((res) => {
-        console.log(res);
+   
         // Extraer la edad de la respuesta del servidor y establecerla en el estado
 
         handleSuccessModalShow();

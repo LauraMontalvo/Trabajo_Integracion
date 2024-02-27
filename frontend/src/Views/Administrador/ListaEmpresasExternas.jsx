@@ -6,7 +6,7 @@ import { faTrashAlt, faEdit, faBuilding, faInfoCircle, faLink, faExternalLinkAlt
 import 'bootstrap/dist/css/bootstrap.css';
 import TabsAdministracionComp from "../../Components/Administracion/TabsAdministracionComp";
 import "../../Styles/Lista.scss";
-import "../../Styles/ListaEmpresa.scss"; // Asegúrate de que estos estilos son adecuados para tu diseño
+import "../../Styles/ListaEmpresa.scss"; 
 import EditarEmpresaExterna from "../../Components/Administracion/EditarEmpresaExterna";
 
 const ListaEmpresasExternas = () => {
@@ -33,12 +33,12 @@ const ListaEmpresasExternas = () => {
         return empresa;
     });
     setEmpresasExternas(empresasActualizadas);
-    // También actualiza las empresas filtradas si es necesario
+   
     setEmpresasExternasFiltradas(empresasActualizadas.filter(empresa =>
         empresa.nombreEmpresa.toLowerCase().includes(filtroNombre.toLowerCase())
     ));
-    setShowEditModal(false); // Cierra el modal de edición
-    setShowSuccessEditModal(true); // Muestra el modal de éxito
+    setShowEditModal(false); 
+    setShowSuccessEditModal(true); 
 };
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const ListaEmpresasExternas = () => {
       .then(res => {
         const empresasOrdenadas = res.data.sort((a, b) => a.nombreEmpresa.localeCompare(b.nombreEmpresa));
         setEmpresasExternas(empresasOrdenadas);
-        setEmpresasExternasFiltradas(empresasOrdenadas); // Inicializa con todas las empresas externas
+        setEmpresasExternasFiltradas(empresasOrdenadas); 
       })
       .catch(err => console.error("Error al obtener empresas externas:", err));
   }, [empresasExternas]);
@@ -60,7 +60,7 @@ const ListaEmpresasExternas = () => {
     setEmpresasExternasFiltradas(filtrados);
   };
   const truncateUrl = (url) => {
-    const maxChar = 30; // Máximo número de caracteres antes de truncar
+    const maxChar = 30; 
     return url.length > maxChar ? `${url.substring(0, maxChar)}...` : url;
   };
 

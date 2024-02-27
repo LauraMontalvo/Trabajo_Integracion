@@ -111,8 +111,7 @@ const ListaUsuarios = () => {
 
     axios.put(`https://46wm6186-8000.use.devtunnels.ms/api/user/${usuario._id}`, { estado: nuevoEstado })
       .then(res => {
-        console.log(res);
-        // Actualiza el estado de los usuarios con la nueva información
+      
 
         setUsuarios(prevUsuarios => prevUsuarios.map(usr => usr._id === usuario._id ? { ...usr, estado: nuevoEstado } : usr));
         setUsuariosFiltrados(prevUsuariosFiltrados => prevUsuariosFiltrados.map(usr => usr._id === usuario._id ? { ...usr, estado: nuevoEstado } : usr));

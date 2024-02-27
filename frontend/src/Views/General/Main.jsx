@@ -1,8 +1,7 @@
 import Cabecera from "../../Components/General/Cabecera"
 import Carousel from 'react-bootstrap/Carousel';
 import ExampleCarouselImage from "../../Components/General/Carusel";
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importa las hojas de estilo de Bootstrap
-
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 const Main = () => {
   return (

@@ -42,7 +42,7 @@ const ListaAdministradores = () => {
 
     axios.put(`https://46wm6186-8000.use.devtunnels.ms/api/user/${administrador._id}`, { estado: nuevoEstado }) // Asegúrate de que esta URL y método sean correctos
       .then(res => {
-        console.log(res);
+       
         // Actualiza el estado de los administradores con la nueva información
         setAdministradores(prev => prev.map(usr => usr._id === administrador._id ? { ...usr, estado: nuevoEstado } : usr));
       })

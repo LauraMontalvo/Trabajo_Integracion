@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Container, Row, Col, Card, ListGroup, Image, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, ListGroup, Image, Button, Spinner } from 'react-bootstrap';
 import "../../Styles/Perfil.scss"
 import "../../Styles/detalle.scss"
 import CabeceraUsuarioInicio from '../../Components/Usuario/CabeceraUsuarioInicioComp';
@@ -10,15 +10,18 @@ import defaultImage from '../../img/imagenUsuarioDefecto.png';
 import CabeceraEmpresaInicioComp from '../../Components/Empresa/CabeceraEmpresaInicioComp';
 
 const PerfilEmpresa = (props) => {
-  const { id, idEmpresa,usuario } = useParams(); // Obtener el ID de la empresa desde la URL
+  const { id, idEmpresa,usuario } = useParams(); 
   const [empresa, setEmpresa] = useState(null);
   const [empleos, setEmpleos] = useState([]);
   const [verDescripcionCompleta, setVerDescripcionCompleta] = useState(false);
   const [imagenPreview, setImagenPreview] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); 
+
   const esUsuario = usuario == 'usuario';
   const isAuthenticated = props.isAuthenticated;
   useEffect(() => {
     const cargarDatosEmpresa = async () => {
+      
       try {
         const resEmpresa = await axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/company/${idEmpresa}`);
         setEmpresa(resEmpresa.data);
@@ -31,11 +34,11 @@ const PerfilEmpresa = (props) => {
         if (fotoResponse.data && fotoResponse.data.foto) {
           setImagenPreview(fotoResponse.data.foto);
         } else {
-          setImagenPreview(defaultImage); // Establecer imagen por defecto si no hay foto
+          setImagenPreview(defaultImage); // Establece imagen por defecto si no hay foto
         }
       } catch (error) {
         console.error('Error al cargar los datos:', error);
-        setImagenPreview(defaultImage); // Asegurarse de que la imagen por defecto se establezca en caso de error
+        setImagenPreview(defaultImage); 
       }
     };
 
@@ -46,7 +49,7 @@ const PerfilEmpresa = (props) => {
   if (!empresa) {
     return <div>Cargando...</div>;
 }
-  // Función para alternar la visualización de la descripción
+
   const toggleDescripcion = () => {
     setVerDescripcionCompleta(!verDescripcionCompleta);
   };

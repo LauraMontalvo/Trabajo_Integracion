@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, Container, Row, Col, Button, Image, Form } from 'react-bootstrap';
+import { Card, Container, Row, Col, Button, Image, Form,Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faSearch } from '@fortawesome/free-solid-svg-icons';
 import "../../Styles/Lista.scss";
@@ -9,21 +9,17 @@ import defaultImage from '../../img/imagenUsuarioDefecto.png';
 import CabeceraUsuarioInicio from '../../Components/Usuario/CabeceraUsuarioInicioComp';
 import CabeceraEmpresaInicioComp from '../../Components/Empresa/CabeceraEmpresaInicioComp';
 
-
 const ListaUsuariosResumen = (props) => {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [imagenPreview, setImagenPreview] = useState(null);
+
   const {usuario, id} = useParams();
   const esUsuario = usuario === 'usuario'; // Cambia esto a `true` o `false` según corresponda
   const isAuthenticated = props.isAuthenticated;
-
-
-  console.log(esUsuario)
-
-
+  const [isLoading, setIsLoading] = useState(true); 
   useEffect(() => {
+    setIsLoading(true); // Inicia la carga
     axios.get('https://46wm6186-8000.use.devtunnels.ms/api/users')
       .then(response => {
         // Filtrar solo los usuarios activos y no administradores, excluyendo al usuario actual
@@ -37,11 +33,14 @@ const ListaUsuariosResumen = (props) => {
         );
         
         setUsers(sortedUsers);
-        setFilteredUsers(sortedUsers); // Inicialmente, mostrar todos los usuarios activos ordenados, excluyendo al usuario actual
+        setFilteredUsers(sortedUsers);
+        setIsLoading(false); // Finalizar carga // Inicialmente, muestra todos los usuarios activos ordenados, excluyendo al usuario actual
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error);
+        setIsLoading(false); // Finaliza la carga con error
+      });
   }, [id]);
-
   // Función para manejar la ocultación de un usuario de la lista
   const handleHideUser = (userId) => {
     setUsers(users.filter(user => user._id !== userId));
@@ -66,8 +65,6 @@ const ListaUsuariosResumen = (props) => {
       {esUsuario ? <CabeceraUsuarioInicio isAuthenticated={isAuthenticated} /> : <CabeceraEmpresaInicioComp isAuthenticated={isAuthenticated} />}
     <Container fluid className="mt-4">
       <Row>
-
-        {/* Widget de Filtro a la Derecha */}
         <Col md={3} className="widget">
           <h4>Filtrar Usuarios</h4>
           <Form.Group>
@@ -78,10 +75,13 @@ const ListaUsuariosResumen = (props) => {
               onChange={handleSearchChange}
             />
           </Form.Group>
-          {/* Agrega otros controles de filtro aquí si es necesario */}
-        </Col>
 
-        {/* Lista Principal de Usuarios */}
+        </Col>
+        {isLoading ? (
+          <div className="text-center">
+                <Spinner animation="border" className="mx-auto" /> 
+          </div>
+        ) : (
         <Col md={9}>
           <Col md={12} className="mb-3">
             <div className="total-empresas">
@@ -89,6 +89,7 @@ const ListaUsuariosResumen = (props) => {
               <div className="numero">{users.length}</div>
             </div>
           </Col>
+      
           <Row>
             {filteredUsers.map(user => (
               <Col md={6} lg={4} key={user._id} className="mb-4">
@@ -98,15 +99,15 @@ const ListaUsuariosResumen = (props) => {
                     <Image src={user.foto ||  defaultImage} alt="Foto de perfil" roundedCircle className="profile-picture mb-2" />
                     <Card.Title>{user.nombre} {user.apellido}</Card.Title>
                     <Card.Text className="text-muted">{user.cargo}</Card.Text>
-                    {/* Agregar un resumen de habilidades o intereses aquí */}
-
                     <Button variant="primary" as={Link} to={`/perfilUsuario/${id}/${user._id}/${usuario }`}>Ver perfil</Button>
                   </Card.Body>
                 </Card>
               </Col>
             ))}
           </Row>
+            
         </Col>
+        )}
       </Row>
     </Container>
     </div > );
