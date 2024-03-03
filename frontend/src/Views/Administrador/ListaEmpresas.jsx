@@ -108,7 +108,7 @@ const ListaEmpresas = (props) => {
   const addEmpresaToList = (newEmpresa) => {
     setEmpresas([...empresas, newEmpresa]);
     setRecargar(!recargar);
-    // Cambiar `recargar` para forzar una actualización si es necesario
+ 
   };
 
   const toggleEmpresaState = (empresa) => {
@@ -138,7 +138,7 @@ const ListaEmpresas = (props) => {
                 onChange={handleFiltroNombreChange}
               />
             </Form.Group>
-            {/* Agrega otros controles de filtro aquí si es necesario */}
+
           </Col>
           <Col md={9}>
             <Col md={12} className="mb-3">

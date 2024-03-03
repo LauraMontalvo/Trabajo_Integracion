@@ -76,7 +76,7 @@ const ListaPostulacionesAdmin = () => {
                 setEmpleoAEliminar(null);
             } catch (error) {
                 console.error('Error al eliminar el empleo:', error);
-                // Manejar el error adecuadamente, por ejemplo, mostrar un mensaje al usuario.
+
             }
         }
     };
@@ -175,32 +175,14 @@ const ListaPostulacionesAdmin = () => {
                                                 <Card.Body>
                                                     <Row className="empleo-detalle">
                                                         <Col md={12}>
-                                                            {/* Botón de Ver Postulantes en la esquina superior derecha */}
-                                                            <div style={{ position: 'absolute', top: 10, right: 10 }}>
 
-                                                                <Button
-                                                                    onClick={() => abrirModalPostulantes(empleo.postulaciones)}
-                                                                    className="ml-auto d-none d-lg-block btn-outline-azul"
-                                                                >
-                                                                    <FontAwesomeIcon icon={faUsers} /> Ver postulantes
-                                                                </Button>
-                                                                <Button
-                                                                    onClick={() => abrirModalPostulantes(empleo.postulaciones)}
-                                                                    className="ml-auto d-lg-none btn-outline-azul"
-                                                                >
-                                                                    <FontAwesomeIcon icon={faUsers} />
-                                                                </Button>
-
-
-
-                                                            </div>
                                                             <Card.Title>
                                                                 <FontAwesomeIcon icon={faBriefcase} className="me-2" /> {/* Ícono de Puesto */}
                                                                 {empleo.puesto}
                                                             </Card.Title>
                                                             <Card.Subtitle className="mb-2 text-muted">
                                                                 <FontAwesomeIcon icon={faBuilding} className="me-2" /> {/* Ícono de Empresa */}
-                                                               <strong>{empleo.idEmpresa?.nombreEmpresa || 'Nombre de Empresa no disponible'}</strong> 
+                                                                <strong>{empleo.idEmpresa?.nombreEmpresa || 'Nombre de Empresa no disponible'}</strong>
                                                             </Card.Subtitle>
                                                             <strong>{renderEstadoEmpleo(empleo.estado)}
                                                             </strong>
@@ -255,6 +237,7 @@ const ListaPostulacionesAdmin = () => {
                                                         </Accordion>
 
                                                     )}
+
                                                     <div style={{ position: 'relative' }}>
                                                         <div style={{ position: 'absolute', bottom: 10, right: 10 }}>
                                                             <FontAwesomeIcon
@@ -265,6 +248,22 @@ const ListaPostulacionesAdmin = () => {
                                                             />
                                                         </div>
                                                     </div>
+                                                    <Row className="mt-3">
+                                                        <Col className="text-right">
+                                                            <Button
+                                                                onClick={() => abrirModalPostulantes(empleo.postulaciones)}
+                                                                className="ml-auto d-none d-lg-block btn-outline-azul"
+                                                            >
+                                                                <FontAwesomeIcon icon={faUsers} /> Ver postulantes
+                                                            </Button>
+                                                            <Button
+                                                                onClick={() => abrirModalPostulantes(empleo.postulaciones)}
+                                                                className="ml-auto d-lg-none btn-outline-azul"
+                                                            >
+                                                                <FontAwesomeIcon icon={faUsers} />
+                                                            </Button>
+                                                        </Col>
+                                                    </Row>
                                                 </Card.Body>
 
                                             </Card>

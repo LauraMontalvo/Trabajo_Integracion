@@ -10,7 +10,7 @@ const Cabecera = () => {
       <Navbar.Brand as={Link} to="/" className="titulo-Chavp">
         <h2>{constantes.TEXTO_TITULO}</h2>
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" /> {/* Este es el botón del menú colapsable */}
+      <Navbar.Toggle aria-controls="basic-navbar-nav" /> 
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav.Link as={Link} to="/">Inicio</Nav.Link>
         <Nav className="mr-auto" variant="tabs">

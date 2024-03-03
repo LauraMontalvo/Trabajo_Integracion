@@ -91,7 +91,7 @@ const EmpleosPublicados = ({ empleos, mostrarPostulantes, handleEditEmpleoClick,
                                 </Accordion.Item>
                             </Accordion>
                         )}
-                        {/* ... resto del contenido ... */}
+     
                     </ListGroup.Item>
                 ))}
             </ListGroup>

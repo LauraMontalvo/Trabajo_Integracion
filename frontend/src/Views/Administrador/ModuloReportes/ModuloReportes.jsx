@@ -45,12 +45,12 @@ function ModuloReportes() {
   useEffect(() => {
     axios.get('https://46wm6186-8000.use.devtunnels.ms/api/jobs')
       .then(response => {
-        // Supongamos que response.data contiene las ofertas de empleo
+   
         const jobs = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5);
         setRecentJobs(jobs);
       })
       .catch(error => console.error('Error al obtener trabajos:', error));
-    // Obtener usuarios
+    // Obteniene los usuarios
     axios.get('https://46wm6186-8000.use.devtunnels.ms/api/users')
       .then(response => {
         const filteredUsers = response.data.filter(user => user.estado === 'Activo' && user.rol !== 'Administrador');
@@ -59,13 +59,13 @@ function ModuloReportes() {
         setRecentUsers(latestUsers);
 
         setTotalUsuarios(filteredUsers.length);
-        // Aquí puedes calcular y actualizar los usuarios aceptados, rechazados, etc.
+      
       })
       .catch(error => console.error('Error al obtener usuarios:', error));
 
 
 
-    // Obtener empresas
+  
     axios.get('https://46wm6186-8000.use.devtunnels.ms/api/companies')
       .then(response => {
         const latestCompanies = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5);
@@ -74,7 +74,7 @@ function ModuloReportes() {
       })
       .catch(error => console.error('Error al obtener empresas:', error));
 
-    // Obtener postulaciones
+    // Obtiene postulaciones
     axios.get('https://46wm6186-8000.use.devtunnels.ms/api/postulations')
       .then(response => {
         const postulaciones = response.data;
@@ -112,7 +112,6 @@ function ModuloReportes() {
         setDatosDisponibles(false);
       });
 
-    // ... aquí irían otras llamadas a API o lógicas adicionales si las tienes
 
   }, [datosPorEmpresa]); // Dependencias de useEffect
 
@@ -143,7 +142,7 @@ function ModuloReportes() {
   // Suponiendo que ya tienes `motivosRechazo` actualizado con los conteos por motivo
   const totalRechazos = Object.values(motivosRechazo).reduce((acc, curr) => acc + curr, 0);
 
-  // Calcular porcentajes por motivo
+ 
   const porcentajesPorMotivo = {};
   for (const motivo in motivosRechazo) {
     porcentajesPorMotivo[motivo] = ((motivosRechazo[motivo] / totalRechazos) * 100).toFixed(2);
@@ -182,11 +181,6 @@ function ModuloReportes() {
       },
     },
   };
-
-
-
-  // Datos para la gráfica de barras (Puedes personalizar esta parte)
-
 
   // Datos para el carrusel
   const data = [

@@ -290,7 +290,7 @@ const EditarUsuario = ({ id, onUsuarioUpdated, closeEditModal }) => {
         const esTelefonoValido = validarTelefono();
         const esUsuarioValido = validarUsuario();
         const esdescripcionPersValido = validarDescripcionPersonal();
-        // ... (Validar otros campos)
+ 
 
         if (!esNombreValido || !esApellidoValido || !esTelefonoValido || !esUsuarioValido || !esdescripcionPersValido) {
             return; // Detener si hay errores

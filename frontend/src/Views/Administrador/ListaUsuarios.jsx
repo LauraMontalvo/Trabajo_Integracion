@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Card, Container, Row, Col, Button, Modal, Form } from 'react-bootstrap';
-import { faToggleOn, faToggleOff, faEdit, faUser, faPowerOff, faCheckCircle, faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faUser, faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.css';
 import Cabecera from "../../Components/General/Cabecera";
 import TabsAdministracionComp from "../../Components/Administracion/TabsAdministracionComp";
@@ -14,7 +14,7 @@ import { Link, useParams } from 'react-router-dom';
 import EditarUsuario from "../../Components/Usuario/EditarUsuarioComp";
 
 const ListaUsuarios = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const [usuarios, setUsuarios] = useState([]);
   const [usuariosFiltrados, setUsuariosFiltrados] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,18 +56,12 @@ const ListaUsuarios = () => {
     // Filtra para excluir a los usuarios con rol 'Administrador'
     const soloUsuarios = usuarios.filter(usuario => usuario.rol !== 'Administrador');
 
-    // Aquí podrías agregar más lógica de filtrado basada en `searchQuery`, `mostrarActivos`, y `mostrarInactivos` si es necesario
 
     return soloUsuarios;
   };
 
 
-  ///
-  const actualizarUsuarios = (nuevosUsuarios) => {
-    const usuariosFiltrados = filtrarUsuarios(nuevosUsuarios);
-    setUsuarios(usuariosFiltrados);
-    setUsuariosFiltrados(usuariosFiltrados);
-  };
+
 
 
 
@@ -111,7 +105,7 @@ const ListaUsuarios = () => {
 
     axios.put(`https://46wm6186-8000.use.devtunnels.ms/api/user/${usuario._id}`, { estado: nuevoEstado })
       .then(res => {
-      
+
 
         setUsuarios(prevUsuarios => prevUsuarios.map(usr => usr._id === usuario._id ? { ...usr, estado: nuevoEstado } : usr));
         setUsuariosFiltrados(prevUsuariosFiltrados => prevUsuariosFiltrados.map(usr => usr._id === usuario._id ? { ...usr, estado: nuevoEstado } : usr));

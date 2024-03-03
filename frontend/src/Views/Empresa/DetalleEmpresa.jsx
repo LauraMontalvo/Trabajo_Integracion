@@ -65,7 +65,7 @@ function DetalleEmpresa({ isAuthenticated }) {
     setShowEditEmpleoModal(true);
   };
 
- 
+
   const eliminarEmpleo = () => {
     axios.delete(`https://46wm6186-8000.use.devtunnels.ms/api/job/${empleoAEliminar}`)
       .then(() => {
@@ -130,13 +130,13 @@ function DetalleEmpresa({ isAuthenticated }) {
   };
   const cargarEmpleos = () => {
     axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/jobs/company/${id}`)
-        .then((res) => {
-            // Filtrar empleos para excluir los inactivos
-            const empleosActivos = res.data.filter(empleo => empleo.estado === "Activo");
-            setEmpleos(empleosActivos);
-        })
-        .catch((err) => console.error(err));
-};
+      .then((res) => {
+        // Filtrar empleos para excluir los inactivos
+        const empleosActivos = res.data.filter(empleo => empleo.estado === "Activo");
+        setEmpleos(empleosActivos);
+      })
+      .catch((err) => console.error(err));
+  };
 
   const cargarEmpleoid = () => {
     axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/job/${id}`)
@@ -159,26 +159,26 @@ function DetalleEmpresa({ isAuthenticated }) {
   const toggleDescripcion = () => {
     setVerDescripcionCompleta(!verDescripcionCompleta);
   };
-  const toggleValores= () => {
+  const toggleValores = () => {
     setValores(!verValores);
   };
 
 
-const handleShowModalEliminar = (empleoId) => {
-  setEmpleoAEliminar(empleoId);
-  setShowModalEliminar(true);
-};
+  const handleShowModalEliminar = (empleoId) => {
+    setEmpleoAEliminar(empleoId);
+    setShowModalEliminar(true);
+  };
 
-const inactivarYEliminarEmpleoDeLista = () => {
-  axios.put(`https://46wm6186-8000.use.devtunnels.ms/api/job/${empleoAEliminar}`, { estado: "Inactivo" })
+  const inactivarYEliminarEmpleoDeLista = () => {
+    axios.put(`https://46wm6186-8000.use.devtunnels.ms/api/job/${empleoAEliminar}`, { estado: "Inactivo" })
       .then(() => {
-          // Filtra y actualiza la lista de empleos para excluir el inactivado
-          const empleosActualizados = empleos.filter(empleo => empleo._id !== empleoAEliminar);
-          setEmpleos(empleosActualizados);
-          setShowModalEliminar(false);
+        // Filtra y actualiza la lista de empleos para excluir el inactivado
+        const empleosActualizados = empleos.filter(empleo => empleo._id !== empleoAEliminar);
+        setEmpleos(empleosActualizados);
+        setShowModalEliminar(false);
       })
       .catch(err => console.error(err));
-};
+  };
 
   return (
     <div className="App">
@@ -206,39 +206,39 @@ const inactivarYEliminarEmpleoDeLista = () => {
                     </div>
                     <FontAwesomeIcon icon={faPencilAlt} onClick={handleShowEditUserModal} className="edit-icon" />
                   </Card.Header>
-            
+
                   <ListGroup.Item className="list-group-item">
                     <span className="field-title">Correo:</span> <span className="field-value">{empresa.correo}</span>
                   </ListGroup.Item>
                   <ListGroup.Item className="list-group-item">
                     <span className="field-title">Dirección:</span> <span className="field-value">{empresa.direccion}</span>
                   </ListGroup.Item>
-                  
+
                   <ListGroup.Item className="list-group-item">
-                    <span className="field-title">Teléfono:</span> 
+                    <span className="field-title">Teléfono:</span>
                     <span className="field-value"> {empresa.telefono}</span>
                   </ListGroup.Item>
-                  
-           
-                  <ListGroup.Item  className="list-group-item" >
-  <div className={`contenido-desplegable ${verDescripcionCompleta ? 'expandido' : ''}`}>
-    <span className="field-title">Descripción:</span>
-    <p className="field-value">{empresa.descripcion}</p>
-  </div>
-  <Button variant="link" onClick={toggleDescripcion} className="expand-button">
-    {verDescripcionCompleta ? 'Ver menos' : 'Ver más'}
-  </Button>
-</ListGroup.Item>
 
-<ListGroup.Item  className="list-group-item">
-  <div className={`contenido-desplegable ${verValores ? 'expandido' : ''}`}>
-    <span className="field-title">Valores:</span>
-    <p className="field-value">{empresa.valores}</p>
-  </div>
-  <Button variant="link" onClick={toggleValores} className="expand-button">
-    {verValores ? 'Ver menos' : 'Ver más'}
-  </Button>
-</ListGroup.Item>
+
+                  <ListGroup.Item className="list-group-item" >
+                    <div className={`contenido-desplegable ${verDescripcionCompleta ? 'expandido' : ''}`}>
+                      <span className="field-title">Descripción:</span>
+                      <p className="field-value">{empresa.descripcion}</p>
+                    </div>
+                    <Button variant="link" onClick={toggleDescripcion} className="expand-button">
+                      {verDescripcionCompleta ? 'Ver menos' : 'Ver más'}
+                    </Button>
+                  </ListGroup.Item>
+
+                  <ListGroup.Item className="list-group-item">
+                    <div className={`contenido-desplegable ${verValores ? 'expandido' : ''}`}>
+                      <span className="field-title">Valores:</span>
+                      <p className="field-value">{empresa.valores}</p>
+                    </div>
+                    <Button variant="link" onClick={toggleValores} className="expand-button">
+                      {verValores ? 'Ver menos' : 'Ver más'}
+                    </Button>
+                  </ListGroup.Item>
 
                   <Modal show={showEditUserModal} onHide={handleCloseEditUserModal} size="lg">
                     <Modal.Header closeButton>
@@ -252,7 +252,7 @@ const inactivarYEliminarEmpleoDeLista = () => {
                 </ListGroup>
               </Card.Body>
             </Card>
-      
+
           </Col>
           <Col xs={12} md={6} lg={8}>
             {/* Pestañas para información académica y laboral */}
@@ -260,24 +260,24 @@ const inactivarYEliminarEmpleoDeLista = () => {
               <Tab eventKey="publicarEmpleo" title="Publicar Empleo">
                 <Card>
                   <Card.Body>
-                  <EmpleosPublicados
-                empleos={empleos}
-                mostrarPostulantes={mostrarPostulantes}
-                handleEditEmpleoClick={handleEditEmpleoClick}
-                handleShowModalEliminar={handleShowModalEliminar}
-            />
-            <Modal show={showModalEliminar} onHide={() => setShowModalEliminar(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Confirmar Inactivación</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    ¿Estás seguro de que deseas inactivar este empleo?
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowModalEliminar(false)}>Cancelar</Button>
-                    <Button variant="danger" onClick={inactivarYEliminarEmpleoDeLista}>Inactivar</Button>
-                </Modal.Footer>
-            </Modal>
+                    <EmpleosPublicados
+                      empleos={empleos}
+                      mostrarPostulantes={mostrarPostulantes}
+                      handleEditEmpleoClick={handleEditEmpleoClick}
+                      handleShowModalEliminar={handleShowModalEliminar}
+                    />
+                    <Modal show={showModalEliminar} onHide={() => setShowModalEliminar(false)}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Confirmar Eliminación</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        ¿Estás seguro de que deseas eliminar este empleo?
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowModalEliminar(false)}>Cancelar</Button>
+                        <Button variant="danger" onClick={inactivarYEliminarEmpleoDeLista}>Eliminar</Button>
+                      </Modal.Footer>
+                    </Modal>
                     {/* Modal para mostrar postulantes */}
                     <Modal show={showModal} onHide={() => setShowModal(false)} size="lg">
                       <Modal.Header closeButton>

@@ -1,13 +1,13 @@
 const Postulation = require('../models/postulation.model');
 
 module.exports.createPostulation = (request, response) => {
-    const { idUsuario, idEmpleo, estado ,estadoPostulacion,motivoRechazo} = request.body; // Remover fechaPostulacion de aquí
+    const { idUsuario, idEmpleo, estado ,estadoPostulacion,motivoRechazo} = request.body; 
     Postulation.create({
         idUsuario,
         idEmpleo,
         estado,estadoPostulacion,
         motivoRechazo,
-        fechaPostulacion: new Date() // Establecer la fecha actual aquí
+        fechaPostulacion: new Date() // Establece la fecha actual 
     })
     .then(postulation => response.json({ insertedPostulation: postulation, msg: 'Successful creation' }))
     .catch(err => response.status(400).json(err));
@@ -43,7 +43,7 @@ module.exports.getUserPostulations = (request, response) => {
             path: 'idEmpleo',
             populate: {
                 path: 'idEmpresa',
-                model: 'Company', // Asegúrate de que 'Company' sea el nombre correcto de tu modelo de empresas
+                model: 'Company', 
                 select: 'nombreEmpresa' // Selecciona solo el campo nombreEmpresa
             }
         })

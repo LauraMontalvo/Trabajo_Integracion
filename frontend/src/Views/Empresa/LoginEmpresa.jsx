@@ -11,7 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import logofondo from "../../img/logofondo.png";
 import { Row, Col, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faLock, faEyeSlash, faEye,faExclamationCircle,faCheckCircle} from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faLock, faEyeSlash, faEye, faExclamationCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import Cabecera from '../../Components/General/Cabecera';
 import RegistroEmpresa from '../../Components/Administracion/RegistroEmpresa';
 import { Alert } from 'react-bootstrap';
@@ -53,7 +53,7 @@ const LoginFormEmpresa = (props) => {
     }
   }
 
-  
+
   const RegresarRegistrarComo = () => navigate("/");
 
   return (
@@ -116,10 +116,10 @@ const LoginFormEmpresa = (props) => {
           </Alert>
         )}
 
-<div className="mt-4 text-center">
-      <h6>¿Aún no estás registrado?</h6>
-      <Link to="#" onClick={handleRegisterModalShow} className="text-primary">Regístrate ahora!</Link>
-    </div>
+        <div className="mt-4 text-center">
+          <h6>¿Aún no estás registrado?</h6>
+          <Link to="#" onClick={handleRegisterModalShow} className="text-primary">Regístrate ahora!</Link>
+        </div>
       </Form>
       <Modal show={showRegisterModal} onHide={handleRegisterModalClose} size="lg">
         <Modal.Header closeButton>

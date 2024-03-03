@@ -67,7 +67,7 @@ const ListaEmpleosPerfilEmpresa = ({ empleos, mostrarPostulantes }) => {
                                             </Col>
                                         </Row>
 
-                                        {/* Omitir botones de acción si no son necesarios */}
+                                  
                                     </Accordion.Body>
                                 </Accordion.Item>
                             </Accordion>

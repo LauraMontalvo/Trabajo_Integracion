@@ -18,7 +18,7 @@ function PerfilUsuario(props) {
     const [imagenPreview, setImagenPreview] = useState(null);
     const [certificaciones, setCertificaciones] = useState([]);
     const [verMasDescripcion, setVerMasDescripcion] = useState(false); // Nuevo estado para controlar la visualización
-    const [isLoading, setIsLoading] = useState(true); 
+    const [isLoading, setIsLoading] = useState(true);
 
 
     const esUsuario = usuario == 'usuario';
@@ -31,7 +31,7 @@ function PerfilUsuario(props) {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            
+
             try {
                 const userResponse = await axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/user/${idUsuario}`);
                 setUser(userResponse.data);
@@ -88,7 +88,7 @@ function PerfilUsuario(props) {
     };
     return (
         <div className='App'>
-             {esUsuario ? <CabeceraUsuarioInicio isAuthenticated={isAuthenticated} /> : <CabeceraEmpresaInicioComp isAuthenticated={isAuthenticated} />}
+            {esUsuario ? <CabeceraUsuarioInicio isAuthenticated={isAuthenticated} /> : <CabeceraEmpresaInicioComp isAuthenticated={isAuthenticated} />}
 
             <Container className="mt-4">
                 <Row>
@@ -117,7 +117,7 @@ function PerfilUsuario(props) {
                                     </ListGroup.Item>
                                     <ListGroup.Item className="list-group-item">
                                         <span className="field-title">Fecha de Nacimiento:</span> <span className="field-value">{format(user.fechaNacimiento)}</span>
-                                    </ListGroup.Item>                                 
+                                    </ListGroup.Item>
                                     <ListGroup.Item className="list-group-item">Teléfono: <span className="field-value">{user.telefono}</span></ListGroup.Item>
                                     <ListGroup.Item className="list-group-item">Edad: <span className="field-value">{calcularEdad(user.fechaNacimiento)} años</span></ListGroup.Item>
 

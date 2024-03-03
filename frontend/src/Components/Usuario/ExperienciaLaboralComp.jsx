@@ -145,8 +145,8 @@ const ExperieciaLaboral = ({  idUsuario,onExperienciaAdded, closeAddModal }) => 
       esCampoValido(fechaFin, fechaFinError) &&
       esCampoValido(puesto, puestoError)) {
       // Todos los campos son válidos, proceder con el envío del formulario
-      const fechaInicioFormatted = fechaInicio.split('T')[0]; // Esto asume que fechaInicio ya es una cadena ISO
-      const fechaFinFormatted = fechaFin.split('T')[0]; // Esto asume que fechaFin ya es una cadena ISO
+      const fechaInicioFormatted = fechaInicio.split('T')[0]; 
+      const fechaFinFormatted = fechaFin.split('T')[0]; 
   
       axios.post(constantes.URL_EXPERIENCIA_LABORAL_NUEVA, {
         puesto,
@@ -173,7 +173,7 @@ const ExperieciaLaboral = ({  idUsuario,onExperienciaAdded, closeAddModal }) => 
         })
         .catch((error) => {
           console.error(error.response);
-          // Manejo de error
+
         });
     }
   };

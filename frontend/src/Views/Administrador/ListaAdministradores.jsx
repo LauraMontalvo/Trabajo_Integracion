@@ -15,7 +15,7 @@ const ListaAdministradores = () => {
   const [administradores, setAdministradores] = useState([]);
 
   const [showEditModal, setShowEditModal] = useState(false);
-  const [administradorSeleccionado, setAdministradorSeleccionado] = useState(null);
+
 
   const toggleEditarModal = () => setShowEditModal(!showEditModal);
   const [selectedAdminId, setSelectedAdminId] = useState(null);
@@ -71,14 +71,12 @@ const ListaAdministradores = () => {
                             <FontAwesomeIcon icon={faUser} className="me-2" />
                             {administrador.nombre} {administrador.apellido}
                           </Card.Title>
-                          {/* Otros detalles del administrador */}
+                        
                         </Col>
                         <Col xs={12} sm={6} md={4} className="text-right">
                           <div className="icon-container">
                             {/* Iconos de acciones como editar o cambiar estado */}
                             <FontAwesomeIcon className="icon-primary me-2" icon={faEdit} size="lg" onClick={() => handleEditClick(administrador._id)} />
-
-
 
                             <OverlayTrigger
                               placement="top"

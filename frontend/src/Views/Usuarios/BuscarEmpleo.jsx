@@ -9,7 +9,7 @@ import CabeceraUsuarioInicio from '../../Components/Usuario/CabeceraUsuarioInici
 import { Link } from 'react-router-dom';
 import "../../Styles/Lista.scss";
 import moment from 'moment';
-import 'moment/locale/es'; // Importar el locale español
+import 'moment/locale/es'; // se importa el locale español
 const BuscarEmpleo = () => {
     const [empleos, setEmpleos] = useState([]);
     const [postulacionesUsuario, setPostulacionesUsuario] = useState([]);
@@ -31,7 +31,7 @@ const BuscarEmpleo = () => {
                 );
                 setEmpleos(empleosConEmpresa);
 
-                // Obtener postulaciones del usuario desde el servidor
+                // Obtiene las postulaciones del usuario desde el servidor
                 const respuestaPostulaciones = await axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/postulations/user/${idUsuario}`);
                 setPostulacionesUsuario(respuestaPostulaciones.data);
             } catch (error) {
@@ -61,7 +61,7 @@ const BuscarEmpleo = () => {
                 estado: 'En Espera',
             });
 
-            // Actualizar el estado de postulaciones del usuario
+            // Actualiza el estado de postulaciones del usuario
             setPostulacionesUsuario((prevPostulaciones) => [
                 ...prevPostulaciones,
                 { ...response.data.insertedPostulation, idEmpleo: { _id: selectedJobId } },
@@ -86,7 +86,7 @@ const BuscarEmpleo = () => {
                 <Accordion defaultActiveKey="0" flush>
                     {empleos.map((empleo, index) => {
                         if (!empleo || !empleo._id) {
-                            return null; // O manejar de otra manera cuando el empleo es inválido
+                            return null;
                         }
                         return (
 
@@ -94,7 +94,7 @@ const BuscarEmpleo = () => {
                                 <Card className="card-custom">
                                     <Accordion.Header >
                                         <div>
-                                        <p className="publication-date">Publicado {formatRelativeDate(empleo.fechaPublicacion)}</p>
+                                            <p className="publication-date">Publicado {formatRelativeDate(empleo.fechaPublicacion)}</p>
                                             Empleo en  <Link to={`/perfilEmpresa/${id}/${empleo.idEmpresa._id}`} className="empresa-link">
                                                 {empleo.idEmpresa?.nombreEmpresa || "Empresa no especificada"}
                                             </Link>

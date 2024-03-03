@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, Container, Row, Col, Button, Image, Form,Spinner } from 'react-bootstrap';
+import { Card, Container, Row, Col, Button, Image, Form, Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faSearch } from '@fortawesome/free-solid-svg-icons';
 import "../../Styles/Lista.scss";
@@ -14,24 +14,24 @@ const ListaUsuariosResumen = (props) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const {usuario, id} = useParams();
+  const { usuario, id } = useParams();
   const esUsuario = usuario === 'usuario'; // Cambia esto a `true` o `false` según corresponda
   const isAuthenticated = props.isAuthenticated;
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setIsLoading(true); // Inicia la carga
     axios.get('https://46wm6186-8000.use.devtunnels.ms/api/users')
       .then(response => {
         // Filtrar solo los usuarios activos y no administradores, excluyendo al usuario actual
-        const nonAdminActiveUsers = response.data.filter(user => 
+        const nonAdminActiveUsers = response.data.filter(user =>
           user.estado === 'Activo' && user.rol !== 'Administrador' && user._id !== id
         );
-        
+
         // Ordenar los usuarios por nombre
-        const sortedUsers = nonAdminActiveUsers.sort((a, b) => 
+        const sortedUsers = nonAdminActiveUsers.sort((a, b) =>
           (a.nombre + ' ' + a.apellido).localeCompare(b.nombre + ' ' + b.apellido)
         );
-        
+
         setUsers(sortedUsers);
         setFilteredUsers(sortedUsers);
         setIsLoading(false); // Finalizar carga // Inicialmente, muestra todos los usuarios activos ordenados, excluyendo al usuario actual
@@ -63,55 +63,56 @@ const ListaUsuariosResumen = (props) => {
   return (
     <div className='App'>
       {esUsuario ? <CabeceraUsuarioInicio isAuthenticated={isAuthenticated} /> : <CabeceraEmpresaInicioComp isAuthenticated={isAuthenticated} />}
-    <Container fluid className="mt-4">
-      <Row>
-        <Col md={3} className="widget">
-          <h4>Filtrar Usuarios</h4>
-          <Form.Group>
-            <Form.Control
-              type="text"
-              placeholder="Buscar por nombre o apellido"
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
-          </Form.Group>
+      <Container fluid className="mt-4">
+        <Row>
+          <Col md={3} className="widget">
+            <h4>Filtrar Usuarios</h4>
+            <Form.Group>
+              <Form.Control
+                type="text"
+                placeholder="Buscar por nombre o apellido"
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
+            </Form.Group>
 
-        </Col>
-        {isLoading ? (
-          <div className="text-center">
-                <Spinner animation="border" className="mx-auto" /> 
-          </div>
-        ) : (
-        <Col md={9}>
-          <Col md={12} className="mb-3">
-            <div className="total-empresas">
-              <h4>Total de Usuarios</h4>
-              <div className="numero">{users.length}</div>
-            </div>
           </Col>
-      
-          <Row>
-            {filteredUsers.map(user => (
-              <Col md={6} lg={4} key={user._id} className="mb-4">
-                <Card className="user-card text-center">
-                  <Card.Body>
-                    <FontAwesomeIcon icon={faTimes} className="close-icon" onClick={() => handleHideUser(user._id)} />
-                    <Image src={user.foto ||  defaultImage} alt="Foto de perfil" roundedCircle className="profile-picture mb-2" />
-                    <Card.Title>{user.nombre} {user.apellido}</Card.Title>
-                    <Card.Text className="text-muted">{user.cargo}</Card.Text>
-                    <Button variant="primary" as={Link} to={`/perfilUsuario/${id}/${user._id}/${usuario }`}>Ver perfil</Button>
-                  </Card.Body>
-                </Card>
+          {isLoading ? (
+            <div className="text-center">
+              <Spinner animation="border" className="mx-auto" />
+            </div>
+          ) : (
+            <Col md={9}>
+              <Col md={12} className="mb-3">
+                <div className="total-empresas">
+                  <h4>Total de Usuarios</h4>
+                  {/* Actualizar aquí para mostrar la longitud de filteredUsers en lugar de users */}
+                  <div className="numero">{filteredUsers.length}</div>
+                </div>
               </Col>
-            ))}
-          </Row>
-            
-        </Col>
-        )}
-      </Row>
-    </Container>
-    </div > );
- 
+
+              <Row>
+                {filteredUsers.map(user => (
+                  <Col md={6} lg={4} key={user._id} className="mb-4">
+                    <Card className="user-card text-center">
+                      <Card.Body>
+                        <FontAwesomeIcon icon={faTimes} className="close-icon" onClick={() => handleHideUser(user._id)} />
+                        <Image src={user.foto || defaultImage} alt="Foto de perfil" roundedCircle className="profile-picture mb-2" />
+                        <Card.Title>{user.nombre} {user.apellido}</Card.Title>
+                        <Card.Text className="text-muted">{user.cargo}</Card.Text>
+                        <Button variant="primary" as={Link} to={`/perfilUsuario/${id}/${user._id}/${usuario}`}>Ver perfil</Button>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+
+            </Col>
+          )}
+        </Row>
+      </Container>
+    </div >);
+
 };
 
 export default ListaUsuariosResumen;

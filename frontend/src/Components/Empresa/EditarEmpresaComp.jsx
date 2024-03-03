@@ -193,7 +193,7 @@ const EditarEmpresa = ({ id, onEmpresaUpdated, closeEditModal }) => {
         const nuevoValor = e.target.value;
         setValores(nuevoValor);
 
-        // Establece o elimina el mensaje de error según el contenido del campo
+
         if (!nuevoValor.trim()) {
             setValoresError('Los valores de la empresa son obligatorios');
         } else {
@@ -204,7 +204,7 @@ const EditarEmpresa = ({ id, onEmpresaUpdated, closeEditModal }) => {
         const nuevaDescripcion = e.target.value;
         setDescripcion(nuevaDescripcion);
 
-        // Establece o elimina el mensaje de error según el contenido del campo
+
         if (!nuevaDescripcion.trim()) {
             setDescripcionError('La Descripcion es obligatoria');
         } else {
@@ -215,9 +215,9 @@ const EditarEmpresa = ({ id, onEmpresaUpdated, closeEditModal }) => {
         const nuevoUsuario = e.target.value;
         setUsuario(nuevoUsuario);
 
-        // Establece o elimina el mensaje de error según el contenido del campo
+
         if (!nuevoUsuario.trim()) {
-            // Aquí asumo que tienes un estado para el error del campo usuario, como `usuarioError`
+
             setUsuarioError('El campo de usuario es obligatorio');
         } else {
             setUsuarioError('');
@@ -251,7 +251,7 @@ const EditarEmpresa = ({ id, onEmpresaUpdated, closeEditModal }) => {
                 setDescripcion(res.data.descripcion);
                 setValores(res.data.valores);
                 setUsuario(res.data.usuario);
-                // No necesitas setear las contraseñas aquí
+
             })
             .catch(err => console.log(err));
     }, [id]);
@@ -281,7 +281,7 @@ const EditarEmpresa = ({ id, onEmpresaUpdated, closeEditModal }) => {
         // ... (Validar otros campos)
 
         if (!esNombreEmpresaValido || !esCorreoValido || !esTelefonoValido || !esDireccionValida || !esDescripcionValida || !esUsuarioValido || !esvalorValido) {
-            return; // Detener si hay errores
+            return;
         }
         if (password !== confirmPassword) {
             setUpdateError("Las contraseñas no coinciden");

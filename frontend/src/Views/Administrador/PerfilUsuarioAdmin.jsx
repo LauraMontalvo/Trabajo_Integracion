@@ -43,7 +43,7 @@ function PerfilUsuarioAdmin(props) {
 
                 const certiResponse = await axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/certification/user/${idUsuario}`);
                 setCertificaciones(certiResponse.data);
-                // Obtener la foto del usuario
+                // Obtiene la foto del usuario
                 const fotoResponse = await axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/user/foto/${idUsuario}`);
                 if (fotoResponse.data && fotoResponse.data.foto) {
                     setImagenPreview(fotoResponse.data.foto);
@@ -87,7 +87,7 @@ function PerfilUsuarioAdmin(props) {
     };
     return (
         <div className='App'>
-             <TabsAdministracionComp/>
+            <TabsAdministracionComp />
 
             <Container className="mt-4">
                 <Row>
@@ -116,7 +116,7 @@ function PerfilUsuarioAdmin(props) {
                                     </ListGroup.Item>
                                     <ListGroup.Item className="list-group-item">
                                         <span className="field-title">Fecha de Nacimiento:</span> <span className="field-value">{format(user.fechaNacimiento)}</span>
-                                    </ListGroup.Item>                                 
+                                    </ListGroup.Item>
                                     <ListGroup.Item className="list-group-item">Teléfono: <span className="field-value">{user.telefono}</span></ListGroup.Item>
                                     <ListGroup.Item className="list-group-item">Edad: <span className="field-value">{calcularEdad(user.fechaNacimiento)} años</span></ListGroup.Item>
 

@@ -20,7 +20,7 @@ const CabeceraEmpresaInicioComp = ({ isAuthenticated }) => {
 
   const handleShowLogoutModal = () => setShowLogoutModal(true);
   const handleCloseLogoutModal = () => setShowLogoutModal(false);
-  
+
   const handleConfirmLogout = () => {
     handleLogout();
     handleCloseLogoutModal();
@@ -31,16 +31,16 @@ const CabeceraEmpresaInicioComp = ({ isAuthenticated }) => {
 
   return (
     <Navbar bg="light" expand="lg" className="mb-4">
-      <Navbar.Brand   className="titulo-Chavp">
+      <Navbar.Brand className="titulo-Chavp">
         <h2>{constantes.TEXTO_TITULO}</h2>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          {/* Siempre mostramos el enlace al Inicio */}
+
           <Nav.Link as={Link} to={`/resumen/${id}/empresa`}>Inicio</Nav.Link>
-          
-          {/* Mostramos el enlace al perfil solo si no estamos actualmente en el perfil */}
+
+
           {!viendoPerfil && (
             <Nav.Link as={Link} to={`/detalleEmpresa/${id}`}>
               Ver Mi Perfil
@@ -49,19 +49,19 @@ const CabeceraEmpresaInicioComp = ({ isAuthenticated }) => {
         </Nav>
       </Navbar.Collapse>
       <Button
-          variant="outline-danger"
-          onClick={handleShowLogoutModal}
-          className="ml-auto d-none d-lg-block"
-        >
-          Cerrar Sesión
-        </Button>
-        <Button
-          variant="outline-danger"
-          onClick={handleShowLogoutModal}
-          className="ml-auto d-lg-none"
-        >
-          <FontAwesomeIcon icon={faSignOutAlt} /> {/* Icono de cerrar sesión */}
-        </Button>
+        variant="outline-danger"
+        onClick={handleShowLogoutModal}
+        className="ml-auto d-none d-lg-block"
+      >
+        Cerrar Sesión
+      </Button>
+      <Button
+        variant="outline-danger"
+        onClick={handleShowLogoutModal}
+        className="ml-auto d-lg-none"
+      >
+        <FontAwesomeIcon icon={faSignOutAlt} /> {/* Icono de cerrar sesión */}
+      </Button>
       <Modal show={showLogoutModal} onHide={handleCloseLogoutModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmar cierre de sesión</Modal.Title>

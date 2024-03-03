@@ -9,8 +9,6 @@ const ListaInformacionAcademica = ({ acadTraining, handleShowAcadTrainingModal, 
     if (!dateString) {
         return 'No disponible';
       }
-    
-      // Ya que la fecha está en formato ISO, simplemente devuelve la parte de la fecha.
       return dateString.split('T')[0];
     };
   return (

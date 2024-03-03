@@ -71,51 +71,51 @@ const ListaEmpresas = (props) => {
             </Form.Group>
           </Col>
           {isLoading ? (
-  <div className="text-center">
-  <Spinner animation="border" className="mx-auto" /> 
-</div>
-            ) : (
-            
-          <Col md={9}>
-        
-                <Col md={12} className="mb-3">
-                  <div className="total-empresas">
-                    <h4>Total de Empresas</h4>
-                    <div className="numero">{filteredEmpresas.length}</div>
-                  </div>
-                </Col>
-                <Row>
-                  {filteredEmpresas.map(empresa => (
-                     <Col md={6} lg={4} key={empresa._id} className="mb-4">
-                     <Card className="empresa-card shadow-sm"> {/* Añade sombra para un efecto sutil */}
-                       <Card.Body>
-                         <Row className="align-items-center">
-                           <Col xs={4}>
-                             <Image src={empresa.foto || defaultImage} alt="Foto de perfil" roundedCircle className="img-fluid" />
-                           </Col>
-                           <Col xs={8}>
-                             <Card.Title className="mb-2">{empresa.nombreEmpresa}</Card.Title>
-                             <Card.Text className="text-muted">
-                               <FontAwesomeIcon icon={faEnvelope} className="me-2" />{empresa.correo}
-                             </Card.Text>
-                             <Card.Text className="text-muted">
-                               <FontAwesomeIcon icon={faMapMarkerAlt} className="me-2" />{empresa.direccion}
-                             </Card.Text>
-                             <Card.Text className="text-muted">
-                               <FontAwesomeIcon icon={faPhone} className="me-2" />{empresa.telefono}
-                             </Card.Text>
-                             <Link to={`/perfil-empresa/${id}/${empresa._id}/${usuario}`} className="stretched-link"></Link>
-                           </Col>
-                         </Row>
-                       </Card.Body>
-                     </Card>
-                   </Col>
-                  ))}
-                </Row>
-        
-        
-          </Col>
-              )}
+            <div className="text-center">
+              <Spinner animation="border" className="mx-auto" />
+            </div>
+          ) : (
+
+            <Col md={9}>
+
+              <Col md={12} className="mb-3">
+                <div className="total-empresas">
+                  <h4>Total de Empresas</h4>
+                  <div className="numero">{filteredEmpresas.length}</div>
+                </div>
+              </Col>
+              <Row>
+                {filteredEmpresas.map(empresa => (
+                  <Col md={6} lg={4} key={empresa._id} className="mb-4">
+                    <Card className="empresa-card shadow-sm"> {/* Añade sombra para un efecto sutil */}
+                      <Card.Body>
+                        <Row className="align-items-center">
+                          <Col xs={4}>
+                            <Image src={empresa.foto || defaultImage} alt="Foto de perfil" roundedCircle className="img-fluid" />
+                          </Col>
+                          <Col xs={8}>
+                            <Card.Title className="mb-2">{empresa.nombreEmpresa}</Card.Title>
+                            <Card.Text className="text-muted">
+                              <FontAwesomeIcon icon={faEnvelope} className="me-2" />{empresa.correo}
+                            </Card.Text>
+                            <Card.Text className="text-muted">
+                              <FontAwesomeIcon icon={faMapMarkerAlt} className="me-2" />{empresa.direccion}
+                            </Card.Text>
+                            <Card.Text className="text-muted">
+                              <FontAwesomeIcon icon={faPhone} className="me-2" />{empresa.telefono}
+                            </Card.Text>
+                            <Link to={`/perfil-empresa/${id}/${empresa._id}/${usuario}`} className="stretched-link"></Link>
+                          </Col>
+                        </Row>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+
+
+            </Col>
+          )}
         </Row>
       </Container>
     </div>
