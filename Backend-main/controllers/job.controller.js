@@ -1,5 +1,5 @@
 const Job = require('../models/job.model');
-const Company = require('../models/company.model'); // Asegúrate de que este modelo esté correctamente definido
+const Company = require('../models/company.model'); 
 
 const Postulation = require('../models/postulation.model');
 module.exports.createJob = (request, response) =>{

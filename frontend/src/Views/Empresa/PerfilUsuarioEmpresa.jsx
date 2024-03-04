@@ -86,7 +86,7 @@ function PerfilUsuarioEmpresa(props) {
     };
     return (
         <div className='App'>
-             {esUsuario ? <CabeceraUsuarioInicio isAuthenticated={isAuthenticated} /> : <CabeceraEmpresaInicioComp isAuthenticated={isAuthenticated} />}
+            {esUsuario ? <CabeceraUsuarioInicio isAuthenticated={isAuthenticated} /> : <CabeceraEmpresaInicioComp isAuthenticated={isAuthenticated} />}
 
             <Container className="mt-4">
                 <Row>
@@ -115,7 +115,7 @@ function PerfilUsuarioEmpresa(props) {
                                     </ListGroup.Item>
                                     <ListGroup.Item className="list-group-item">
                                         <span className="field-title">Fecha de Nacimiento:</span> <span className="field-value">{format(user.fechaNacimiento)}</span>
-                                    </ListGroup.Item>                                 
+                                    </ListGroup.Item>
                                     <ListGroup.Item className="list-group-item">Teléfono: <span className="field-value">{user.telefono}</span></ListGroup.Item>
                                     <ListGroup.Item className="list-group-item">Edad: <span className="field-value">{calcularEdad(user.fechaNacimiento)} años</span></ListGroup.Item>
 

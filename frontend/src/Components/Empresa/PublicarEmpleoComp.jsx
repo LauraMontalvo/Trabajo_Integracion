@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Form, Button, Modal, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileAlt, faTools, faGraduationCap, faCalendarAlt, faClipboardList, faBriefcase, faUserCircle, faCheckCircle, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
-import "../../Styles/camps.scss"; // Importa tus estilos personalizados
+import "../../Styles/camps.scss"; 
 import * as constantes from '../../Models/Constantes'
 
 const CampoEstado = ({ valido, mensajeError }) => {

@@ -24,7 +24,7 @@ module.exports.createCompany = (request, response) =>{
 module.exports.getAllCompanies = (_, response) => {
     Company.find({})
         .then(async retrievedCompanies => {
-            // Buscar y adjuntar la URL de la foto a cada empresa
+            // Busca y adjunta la URL de la foto a cada empresa
             const companiesWithPhotos = await Promise.all(retrievedCompanies.map(async company => {
                 const companyPhoto = await CompanyPhoto.findOne({ idEmpresa: company._id });
                 const photoUrl = companyPhoto ? `https://46wm6186-8000.use.devtunnels.ms/Imagenes/${companyPhoto.foto}` : null;

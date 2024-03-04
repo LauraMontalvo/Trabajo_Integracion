@@ -41,7 +41,7 @@ const Main = () => {
             <Container fluid className="main-content">
 
                 <Row className="justify-content-center">
-                    {/* Asegúrate de que las clases de columnas se ajusten a la cantidad deseada */}
+          
                     <Col xs={12} sm={6} md={4} lg={3}>
                         {/* Card para Empresas */}
                         <Card onClick={handleVerEmpresas} className="text-center p-4">
@@ -67,7 +67,7 @@ const Main = () => {
                             </Card.Body>
                         </Card>
                     </Col>
-                    {/* Repite para las demás tarjetas */}
+            
                     <Col xs={12} sm={6} md={4} lg={3}>
                         {/* Card para Usuarios */}
                         <Card className="text-center p-4" onClick={handleVerPostulaciones}>
@@ -84,9 +84,9 @@ const Main = () => {
                 </Row>
 
                 <Row className="justify-content-center">
-                    {/* Asegúrate de que las clases de columnas se ajusten a la cantidad deseada */}
+   
                     <Col xs={12} sm={6} md={4} lg={3}>
-                        {/* Card para Empresas */}
+
                         <Card onClick={handleVerEmpresasExternas} className="text-center p-4">
                             <Card.Body>
                                 <FaBuilding size={70} className="icono-empresa" />
@@ -109,7 +109,7 @@ const Main = () => {
                         </Card>
                     </Col>
                     <Col xs={12} sm={6} md={4} lg={3}>
-                        {/* Card para Usuarios */}
+  
                         <Card className="text-center p-4" onClick={handleVerReportes}>
                             <Card.Body>
                                 <FaChartBar size={70} className="icono-reportes" />

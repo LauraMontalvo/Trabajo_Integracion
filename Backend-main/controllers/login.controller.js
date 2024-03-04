@@ -1,7 +1,7 @@
 const User = require('../models/user.model');
 const Company = require('../models/company.model');
 
-const md5 = require('md5'); // Importa la biblioteca md5
+const md5 = require('md5'); // Se importa la biblioteca md5
 
 // ...
 

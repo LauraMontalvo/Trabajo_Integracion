@@ -25,7 +25,7 @@ module.exports.createUser = (request, response) => {
 module.exports.getAllUsers = (_, response) => {
     User.find({})
         .then(async retrievedUsers => {
-            // Buscar y adjuntar la URL de la foto a cada usuario
+            // Busca y adjunta la URL de la foto a cada usuario
             const usersWithPhotos = await Promise.all(retrievedUsers.map(async user => {
                 const userPhoto = await UserPhoto.findOne({ idUsuario: user._id });
                 const photoUrl = userPhoto ? `https://46wm6186-8000.use.devtunnels.ms/Imagenes/${userPhoto.foto}` : null;
@@ -139,7 +139,7 @@ module.exports.getUserPhoto = (request, response) => {
             if (!user) {
                 return response.status(404).json({ error: 'Usuario no encontrado.' });
             }
-            // Asegúrate de que la ruta de la imagen sea accesible para el cliente
+       
             const imageUrl = user.foto ? `https://46wm6186-8000.use.devtunnels.ms/Imagenes/${user.foto}` : null;
             response.json({ foto: imageUrl });
         })

@@ -31,11 +31,11 @@ const PerfilempresaUser= (props) => {
         if (fotoResponse.data && fotoResponse.data.foto) {
           setImagenPreview(fotoResponse.data.foto);
         } else {
-          setImagenPreview(defaultImage); // Establecer imagen por defecto si no hay foto
+          setImagenPreview(defaultImage); // Establece la  imagen por defecto si no hay foto
         }
       } catch (error) {
         console.error('Error al cargar los datos:', error);
-        setImagenPreview(defaultImage); // Asegurarse de que la imagen por defecto se establezca en caso de error
+        setImagenPreview(defaultImage); // se confirma que la imagen por defecto se establezca en caso de error
       }
     };
 

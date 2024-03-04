@@ -25,7 +25,7 @@ const EditarEmpleoComp = ({ idEmpleo, onEmpleoEditado, closeEditModal }) => {
     }
   };
 
- 
+
   useEffect(() => {
     axios.get(`${constantes.URL_OBTENER_UN_EMPLEO}/${idEmpleo}`)
       .then(response => {
@@ -174,12 +174,12 @@ const EditarEmpleoComp = ({ idEmpleo, onEmpleoEditado, closeEditModal }) => {
               value={aptitudes}
 
             />
-            {/* Validación de estado */}
+       
           </div>
         </Form.Group>
 
 
-        {/* Número de vacantes */}
+  
 
         <Form.Group>
           <Form.Label>Modalidad</Form.Label>

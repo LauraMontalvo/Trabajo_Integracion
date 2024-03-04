@@ -37,7 +37,7 @@ const InicioResumenUsuario = (props) => {
       text: "Ver empresas externas.",
 
       link: `/resumenUsuario/empresasexternas/${id}/${usuario}`,
-      icon: empresaExticonoImg, // Imagen para empresas
+      icon: empresaExticonoImg, 
     },
     {
       title: "Empleos disponibles",

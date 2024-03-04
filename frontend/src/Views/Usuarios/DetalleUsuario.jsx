@@ -143,7 +143,7 @@ function DetalleUsuario(props) {
 
     axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/acadTrainings/user/${id}`)
       .then(response => {
-        
+
         setAcadTraining(response.data);
       })
       .catch(error => {
@@ -163,7 +163,7 @@ function DetalleUsuario(props) {
     if (deleteExperienceId) {
       try {
         await axios.delete(`https://46wm6186-8000.use.devtunnels.ms/api/workExperience/${deleteExperienceId}`);
- 
+
         cargarExperienciaLaboral();
         handleCloseDeleteExperienceModal();
       } catch (error) {
@@ -229,7 +229,7 @@ function DetalleUsuario(props) {
   };
   const validarFechaFin = (fechaInicio, fechaFin) => {
     const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0); 
+    hoy.setHours(0, 0, 0, 0);
 
     if (!fechaFin) {
       setFechaFinError('La fecha de fin es obligatoria.');
@@ -390,14 +390,21 @@ function DetalleUsuario(props) {
   const handleShowAcadTrainingModal = (acadTrainingId = null) => {
     setShowAcadTrainingModal(true);
 
+    // Restablecer los valores por defecto al abrir el modal
+    setTituloObtenido('');
+    setFechaInicio('');
+    setFechaFin('');
+    setUbicacion('');
+    setEditingAcadTrainingId(null);
+    setInstitucion(null);
+
     if (acadTrainingId) {
       const selectedAcadTraining = acadTraining.find((item) => item._id === acadTrainingId);
-      if (selectedAcadTraining && selectedAcadTraining.idInstitucion) {
-        setTituloObtenido(selectedAcadTraining.tituloObtenido);
-        setFechaInicio(toShortDateFormat(selectedAcadTraining.fechaInicio));
-        setFechaFin(toShortDateFormat(selectedAcadTraining.fechaFin));
-        setUbicacion(selectedAcadTraining.idInstitucion.ubicacion || '');
-
+      if (selectedAcadTraining) {
+        setTituloObtenido(selectedAcadTraining.tituloObtenido || '');
+        setFechaInicio(selectedAcadTraining.fechaInicio ? toShortDateFormat(selectedAcadTraining.fechaInicio) : '');
+        setFechaFin(selectedAcadTraining.fechaFin ? toShortDateFormat(selectedAcadTraining.fechaFin) : '');
+        setUbicacion(selectedAcadTraining.idInstitucion?.ubicacion || '');
         setEditingAcadTrainingId(acadTrainingId);
 
         if (selectedAcadTraining.idInstitucion) {
@@ -405,23 +412,11 @@ function DetalleUsuario(props) {
             label: selectedAcadTraining.idInstitucion.nombreInstitucion,
             value: selectedAcadTraining.idInstitucion._id
           });
-          // Asegúrate de establecer la ubicación aquí
-          setUbicacion(selectedAcadTraining.idInstitucion.ubicacion || '');
-        } else {
-          setInstitucion(null);
-          setUbicacion('');
         }
       }
-    } else {
-      // Restablecer los valores para una nueva entrada
-      setTituloObtenido('');
-      setFechaInicio('');
-      setFechaFin('');
-      setUbicacion('');
-      setEditingAcadTrainingId(null);
-      setInstitucion(null);
     }
   };
+
 
   const handleCloseAcadTrainingModal = () => {
     setShowAcadTrainingModal(false);
@@ -445,10 +440,10 @@ function DetalleUsuario(props) {
 
     const institucionEncontrada = instituciones.find(inst => inst._id === institucionCarga.value);
     if (institucionEncontrada) {
-  
+
       setUbicacion(institucionEncontrada.ubicacion);
     } else {
-   
+
       setUbicacion('');
     }
   };

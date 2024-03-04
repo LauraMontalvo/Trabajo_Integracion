@@ -13,11 +13,7 @@ const CabeceraUsuarioInicio = ({ isAuthenticated }) => {
   const { id } = useParams();
   const location = useLocation();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-
-
   const handleLogout = () => {
-    // Aquí puedes agregar la lógica para manejar el cierre de sesión
-    // Por ejemplo, limpiar el estado global, eliminar tokens, etc.
     navigate("/loginusuario");
   };
 
@@ -27,22 +23,10 @@ const CabeceraUsuarioInicio = ({ isAuthenticated }) => {
     handleLogout();
     handleCloseLogoutModal();
   };
-
-
   // Determina la página actual basándose en la URL
   const enPerfilUsuario = location.pathname.includes(`/detalleUsuario/${id}`);
 
  
-  useEffect(() => {
-    if (id) {
-      axios.get(`http://localhost:8000/api/user/${id}`)
-        .then((res) => {
-          // Manejar respuesta
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [id]);
-
   return (
 
     <>
@@ -80,7 +64,7 @@ const CabeceraUsuarioInicio = ({ isAuthenticated }) => {
           onClick={handleShowLogoutModal}
           className="ml-auto d-lg-none"
         >
-          <FontAwesomeIcon icon={faSignOutAlt} /> {/* Icono de cerrar sesión */}
+          <FontAwesomeIcon icon={faSignOutAlt} /> 
         </Button>
         <Modal show={showLogoutModal} onHide={handleCloseLogoutModal}>
           <Modal.Header closeButton>

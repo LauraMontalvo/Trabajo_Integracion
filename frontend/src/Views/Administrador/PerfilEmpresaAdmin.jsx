@@ -43,7 +43,7 @@ const PerfilEmpresaAdmin = () => {
 
   if (!empresa) {
     return <div>Cargando...</div>;
-}
+  }
   // Función para alternar la visualización de la descripción
   const toggleDescripcion = () => {
     setVerDescripcionCompleta(!verDescripcionCompleta);
@@ -53,7 +53,7 @@ const PerfilEmpresaAdmin = () => {
 
   return (
     <div className='App'>
-      <TabsAdministracionComp/>
+      <TabsAdministracionComp />
       <Container className="perfil-empresa mt-4">
         <Row>
           <Col md={4}>
@@ -63,7 +63,9 @@ const PerfilEmpresaAdmin = () => {
                 <div className="image-container text-center mb-3">
                   <Image src={imagenPreview || defaultImage} alt="Foto de perfil" roundedCircle className="img-fluid" />
                 </div>
-                <Card.Title className="titulo-empresa">{empresa.nombreEmpresa}</Card.Title>
+                <div className="text-center">
+                  <Card.Title><strong>{empresa.nombreEmpresa}</strong></Card.Title>
+                </div>
                 <ListGroup variant="flush">
                   <ListGroup.Item>Correo: {empresa.correo}</ListGroup.Item>
                   <ListGroup.Item>Dirección: {empresa.direccion}</ListGroup.Item>
