@@ -127,8 +127,7 @@ const EditarExperienciaLaboral = ({ idExperiencia, onExperienciaEdited, closeEdi
    
         validateFechaInicio(fechaInicio, setFechaInicioError);
         validateFechaFin(fechaFin, setFechaFinError, fechaInicio);
-    
-
+        
         if (descripcionResponsabilidadesError || ambitoLaboralError || puestoError || empresaError || fechaInicioError || fechaFinError) {
        
             return; // Detiene la ejecución si hay errores
