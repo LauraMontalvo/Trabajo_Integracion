@@ -23,12 +23,16 @@ const BuscarEmpleo = () => {
             try {
                 const respuestaEmpleos = await axios.get('https://46wm6186-8000.use.devtunnels.ms/api/jobs');
                 const empleosActivos = respuestaEmpleos.data.filter(empleo => empleo.estado === 'Activo');
-                const empleosConEmpresa = await Promise.all(
-                    empleosActivos.map(async (empleo) => {
-                        const resEmpresa = await axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/company/${empleo.idEmpresa}`);
-                        return { ...empleo, nombreEmpresa: resEmpresa.data.nombreEmpresa };
-                    })
-                );
+               
+               // Ordenar los empleos por fecha de publicación en orden descendente
+               const empleosOrdenados = empleosActivos.sort((a, b) => new Date(b.fechaPublicacion) - new Date(a.fechaPublicacion));
+                
+               const empleosConEmpresa = await Promise.all(
+                   empleosOrdenados.map(async (empleo) => {
+                       const resEmpresa = await axios.get(`https://46wm6186-8000.use.devtunnels.ms/api/company/${empleo.idEmpresa}`);
+                       return { ...empleo, nombreEmpresa: resEmpresa.data.nombreEmpresa };
+                   })
+               );
                 setEmpleos(empleosConEmpresa);
 
                 // Obtiene las postulaciones del usuario desde el servidor

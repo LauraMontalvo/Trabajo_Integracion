@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
     ListGroup, Button, Badge, Form, Modal, Tooltip, OverlayTrigger
-} from 'react-bootstrap';import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+} from 'react-bootstrap'; import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faHourglass, faCheckCircle, faTimesCircle, faUser, faInfoCircle
-} from '@fortawesome/free-solid-svg-icons';import { Link ,useParams} from 'react-router-dom';
+} from '@fortawesome/free-solid-svg-icons'; import { Link, useParams } from 'react-router-dom';
 import "../../Styles/Lista.scss"
 import * as constantes from '../../Models/Constantes'
 
@@ -20,7 +20,7 @@ const VerPostulaciones = ({ idEmpleo, postulantes }) => {
     const [showRejectionModal, setShowRejectionModal] = useState(false);
     const [selectedReason, setSelectedReason] = useState('');
     const [postulationToReject, setPostulationToReject] = useState(null);
-    const {id} = useParams();
+    const { id } = useParams();
     const openRejectionModal = (idPostulacion) => {
         setPostulationToReject(idPostulacion);
         setShowRejectionModal(true);
@@ -51,8 +51,8 @@ const VerPostulaciones = ({ idEmpleo, postulantes }) => {
         const postulantesFiltrados = postulantes.filter(postulacion => postulacion.idUsuario && postulacion.idUsuario.estado !== 'Eliminado');
         setPostulantesList(postulantesFiltrados);
     }, [postulantes]);
-    
-    
+
+
     useEffect(() => {
         // Utilizado para el seguimiento de cambios en postulantesList
         console.log(postulantesList);
@@ -87,63 +87,68 @@ const VerPostulaciones = ({ idEmpleo, postulantes }) => {
         );
     };
     return (<>
+        {postulantesList.length > 0 ? (
             <ListGroup className="list-group-flush">
-            {postulantesList.map(postulacion => (
-                
-                <ListGroup.Item key={postulacion._id} className="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                    
-                    <div className="mb-2 mb-md-0 d-flex align-items-center">
-                        
-                        <FontAwesomeIcon icon={faUser} className="me-2" />
-                        <Link to={`/perfilUsuario/${id}/${postulacion.idUsuario?._id}`}>
-                            {postulacion.idUsuario?.nombre} {postulacion.idUsuario?.apellido}
-                        </Link>
-                        
-                    </div>
-                    <div className="mb-2 mb-md-0 text-center">
-                        {renderEstado(postulacion.estado)}
-                        
-                    </div>
-                    
-                    <div>
-                        <Button
-                            variant="success"
+                {postulantesList.map(postulacion => (
 
+                    <ListGroup.Item key={postulacion._id} className="d-flex flex-column flex-md-row justify-content-between align-items-center">
 
-                            onClick={() => actualizarEstadoPostulacion(postulacion._id, 'Aceptada')}
-                            disabled={postulacion.estado === 'Aceptada' || postulacion.estado === 'Negada'}
-                            style={buttonStyle}
-                            className="ver-postulaciones-button"
+                        <div className="mb-2 mb-md-0 d-flex align-items-center">
 
-                        >
-                            Aceptar
-                        </Button>
-                        <Button
-                            variant="danger"
-                            className="ver-postulaciones-button"
+                            <FontAwesomeIcon icon={faUser} className="me-2" />
+                            <Link to={`/perfilUsuario/${id}/${postulacion.idUsuario?._id}`}>
+                                {postulacion.idUsuario?.nombre} {postulacion.idUsuario?.apellido}
+                            </Link>
 
-                            onClick={() => openRejectionModal(postulacion._id, 'Negada')}
-                            disabled={postulacion.estado === 'Aceptada' || postulacion.estado === 'Negada'}
-                            style={buttonStyle}
-                        >
-                            Negar
-                        </Button>
-                        <div>
-                        {postulacion.estado === 'Negada' && postulacion.motivoRechazo && (
-                            <div className="w-100 text-center">
-                                <Badge bg="secondary">Motivo del Rechazo: {postulacion.motivoRechazo}</Badge>
-                            </div>
-                        )}
                         </div>
-                       
-                    </div>
-                 
-                </ListGroup.Item>
-                
-            ))}
-            
-        </ListGroup>
+                        <div className="mb-2 mb-md-0 text-center">
+                            {renderEstado(postulacion.estado)}
 
+                        </div>
+
+                        <div>
+                            <Button
+                                variant="success"
+
+
+                                onClick={() => actualizarEstadoPostulacion(postulacion._id, 'Aceptada')}
+                                disabled={postulacion.estado === 'Aceptada' || postulacion.estado === 'Negada'}
+                                style={buttonStyle}
+                                className="ver-postulaciones-button"
+
+                            >
+                                Aceptar
+                            </Button>
+                            <Button
+                                variant="danger"
+                                className="ver-postulaciones-button"
+
+                                onClick={() => openRejectionModal(postulacion._id, 'Negada')}
+                                disabled={postulacion.estado === 'Aceptada' || postulacion.estado === 'Negada'}
+                                style={buttonStyle}
+                            >
+                                Negar
+                            </Button>
+                            <div>
+                                {postulacion.estado === 'Negada' && postulacion.motivoRechazo && (
+                                    <div className="w-100 text-center">
+                                        <Badge bg="secondary">Motivo del Rechazo: {postulacion.motivoRechazo}</Badge>
+                                    </div>
+                                )}
+                            </div>
+
+                        </div>
+
+                    </ListGroup.Item>
+
+                ))}
+
+            </ListGroup>
+
+        ) : (
+            // Mostrar mensaje cuando no hay postulantes
+            <p>No existen postulantes por el momento.</p>
+        )}
         <Modal show={showRejectionModal} onHide={() => setShowRejectionModal(false)}>
             <Modal.Header closeButton>
                 <Modal.Title>Selecciona un Motivo de Rechazo</Modal.Title>

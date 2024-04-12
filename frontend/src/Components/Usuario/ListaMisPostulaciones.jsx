@@ -152,7 +152,7 @@ const ListaMisPostulaciones = ({
                         Cancelar
                     </Button>
                     <Button variant="danger" onClick={inactivarPostulacion}>
-                        Inactivar
+                        Eliminar
                     </Button>
                 </Modal.Footer>
             </Modal>

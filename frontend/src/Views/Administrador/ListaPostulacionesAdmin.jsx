@@ -283,7 +283,8 @@ const ListaPostulacionesAdmin = () => {
                         <Modal.Title>Postulantes</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        {postulacionesActuales.map((postulacion) => (
+                    {postulacionesActuales.length > 0 ? (
+                        postulacionesActuales.map((postulacion) => (
                             <Row key={postulacion._id} className="mb-2 align-items-center">
                                 <Col>
                                     <FontAwesomeIcon icon={faUser} className="me-2" />
@@ -302,7 +303,10 @@ const ListaPostulacionesAdmin = () => {
                                     />
                                 </Col>
                             </Row>
-                        ))}
+                            ))
+                            ) : (
+                                <p>No existen postulantes por el momento.</p>
+                                )}
                     </Modal.Body>
                 </Modal>
                 <Modal show={showConfirmModalEmpleo} onHide={() => setShowConfirmModalEmpleo(false)}>

@@ -68,9 +68,10 @@ function ModuloReportes() {
   
     axios.get('https://46wm6186-8000.use.devtunnels.ms/api/companies')
       .then(response => {
-        const latestCompanies = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5);
-        setRecentCompanies(latestCompanies);
-        setTotalEmpresas(response.data.length);
+    const activeCompanies = response.data.filter(company => company.estado === 'Activo');
+    const latestActiveCompanies = activeCompanies.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5);
+    setRecentCompanies(latestActiveCompanies);
+    setTotalEmpresas(activeCompanies.length);
       })
       .catch(error => console.error('Error al obtener empresas:', error));
 
